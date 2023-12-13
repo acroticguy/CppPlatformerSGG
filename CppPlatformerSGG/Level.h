@@ -9,6 +9,14 @@ class Level : public GameObject {
 	float m_center_x = 5.0f;
 	float m_center_y = 5.0f;
 
+	float w;
+	float h;
+
+	float offset_x;
+	float offset_y;
+
+	bool is_on_edge = false;
+
 	std::vector<GameObject*> m_static_objects;
 	std::list<GameObject*> m_dynamic_objects;
 

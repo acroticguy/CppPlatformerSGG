@@ -6,12 +6,6 @@
 void update(float dt)
 {
 	GameState::getInstance()->update(dt);
-	graphics::MouseState mouse;
-	graphics::getMouseState(mouse);
-	if (mouse.button_left_released)
-	{
-		graphics::playSound("assets\\door2.wav", 1.0f, false);
-	}
 }
 
 // The window content drawing function.

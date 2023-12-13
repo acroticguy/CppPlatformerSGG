@@ -6,8 +6,8 @@ class GameState {
 private:
 	std::string m_asset_path = "assets\\";
 
-	float m_canvas_width = 6.f;
-	float m_canvas_height = 6.f;
+	float m_canvas_width = 16.f;
+	float m_canvas_height = 8.f;
 
 	static GameState* m_unique_instance;
 
@@ -28,7 +28,7 @@ public:
 	~GameState();
 	static GameState* getInstance();
 	std::string getAssetPath(std::string image);
-	class Player* getPlayer() { return m_player; }
+	class Player* getPlayer() { return GameState::m_player; }
 
 	float getCanvasWidth();
 	float getCanvasHeight();

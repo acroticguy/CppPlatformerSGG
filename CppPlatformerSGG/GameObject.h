@@ -1,5 +1,7 @@
 #pragma once
+#include "GameState.h"
 #include <string>
+#include <math.h>
 class GameObject
 {
 	static int m_next_id;
@@ -8,6 +10,10 @@ protected:
 	std::string m_name;
 	int m_id = 0;
 	bool m_active = true;
+
+	float w = m_state->getCanvasWidth();
+	float h = m_state->getCanvasHeight();
+
 public:
 	GameObject(const std::string& name = "");
 	virtual void update(float dt) {}

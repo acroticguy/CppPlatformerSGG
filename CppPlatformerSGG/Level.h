@@ -6,16 +6,11 @@
 class Level : public GameObject {
 	graphics::Brush m_brush_background;
 
-	float m_center_x = 5.0f;
-	float m_center_y = 5.0f;
-
-	float w;
-	float h;
+	float m_center_x = 8.0f;
+	float m_center_y = 4.0f;
 
 	float offset_x;
 	float offset_y;
-
-	bool is_on_edge = false;
 
 	std::vector<GameObject*> m_static_objects;
 	std::list<GameObject*> m_dynamic_objects;

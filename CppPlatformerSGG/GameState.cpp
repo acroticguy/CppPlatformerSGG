@@ -63,6 +63,21 @@ float GameState::getCanvasHeight()
 	return m_canvas_height;
 }
 
+float GameState::getBackgroundWidth()
+{
+	return m_background_width;
+}
+
+float GameState::getBackgroundHeight()
+{
+	return m_background_height;
+}
+
+bool GameState::isOnEdge()
+{
+	return fabs(m_global_offset_x - m_canvas_width/2) >= m_background_width/2 - m_canvas_width/2;
+}
+
 GameState::GameState() {
 
 }

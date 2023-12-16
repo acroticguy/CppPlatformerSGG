@@ -1,6 +1,4 @@
 #include "Wall.h"
-#include "graphics.h"
-#include "GameState.h"
 
 void Wall::update(float dt)
 {

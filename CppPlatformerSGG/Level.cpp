@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Wall.h"
+#include "PowerUp.h"
 #include <math.h>
 
 void Level::update(float dt)
@@ -9,6 +10,7 @@ void Level::update(float dt)
 	if (m_state->getPlayer()->isActive()) {
 		m_state->getPlayer()->update(dt);
 		for (auto p_gob : m_static_objects) {
+			p_gob->update(dt);
 			Wall* p_wall = dynamic_cast<Wall*>(p_gob); // Cast Wall* in order to be able to be treated as Box when we use intersect() methods later
 			if (p_wall != nullptr) {
 				float collision_offset = m_state->getPlayer()->intersectDown(*p_wall);
@@ -35,10 +37,13 @@ void Level::init()
 	Wall* ground = new Wall(0, 8, 72, 1);
 	Wall* random_block = new Wall(3, 7, 3, 1);
 	Wall* random_block2 = new Wall(7, 6, 3, 1);
+	PowerUp* apple = new PowerUp(-1, 7, 1, 1);
+	apple->setCycle(17);
 
 	m_static_objects.push_back(ground);
 	m_static_objects.push_back(random_block);
 	m_static_objects.push_back(random_block2);
+	m_static_objects.push_back(apple);
 
 	for (auto p_gob : m_static_objects) {
 		if (p_gob) {

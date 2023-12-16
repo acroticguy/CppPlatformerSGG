@@ -34,7 +34,7 @@ void GameState::update(float dt)
 	graphics::getMouseState(mouse);
 	if (mouse.button_left_released)
 	{
-		graphics::playSound("assets\\door2.wav", 1.0f, false);
+		graphics::playSound("assets\\hit1.wav", 1.0f, false);
 	}
 	m_level->update(dt);
 }

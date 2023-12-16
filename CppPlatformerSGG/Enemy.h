@@ -6,11 +6,8 @@
 class Enemy : public GameObject, public Box {
 	graphics::Brush m_brush_player;
 
-
 public:
-	Enemy(std::string name) : GameObject(name) {
-
-	}
+	Enemy(std::string name) : GameObject(name) {}
 	void update(float dt) override;
 	void init() override;
 	void draw() override;

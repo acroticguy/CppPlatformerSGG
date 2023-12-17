@@ -9,6 +9,8 @@ protected:
 	class GameState* m_state;
 	std::string m_name;
 	int m_id = 0;
+	float frame_count;
+	int animation_cycle;
 	bool m_active = true;
 
 	float w = m_state->getCanvasWidth();

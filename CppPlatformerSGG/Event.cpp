@@ -13,10 +13,6 @@ void Event::draw()
 {
 }
 
-Event::Event()
-{
-}
-
 Event::~Event()
 {
 }

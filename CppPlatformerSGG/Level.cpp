@@ -3,10 +3,13 @@
 #include "Player.h"
 #include "Wall.h"
 #include "PowerUp.h"
+#include "Apple.h"
+#include "Enemy.h"
 #include <math.h>
 
 void Level::update(float dt)
 {
+	float delta_t = dt / 10.f;
 	if (m_state->getPlayer()->isActive()) {
 		m_state->getPlayer()->update(dt);
 		for (auto p_gob : m_static_objects) {
@@ -24,6 +27,17 @@ void Level::update(float dt)
 				}
 			}
 		}
+		time += delta_t;
+		int current_sec = static_cast<int>(floor(time));
+		if (current_sec % 50 == 49) {
+			Enemy* opp = new Enemy(m_state->getPlayer()->m_pos_y);
+			opp->init();
+			m_dynamic_objects.push_back(opp);
+		}
+
+		for (auto p_gob : m_dynamic_objects) {
+			p_gob->update(dt);
+		}
 	}
 
 	GameObject::update(dt);
@@ -31,14 +45,14 @@ void Level::update(float dt)
 
 void Level::init()
 {
+	time = 0;
 	m_brush_background.outline_opacity = 0.f;
 	m_brush_background.texture = m_state->getAssetPath("profilebg.png");
 
 	Wall* ground = new Wall(0, 8, 72, 1);
 	Wall* random_block = new Wall(3, 7, 3, 1);
 	Wall* random_block2 = new Wall(7, 6, 3, 1);
-	PowerUp* apple = new PowerUp(-1, 7, 1, 1);
-	apple->setCycle(17);
+	PowerUp* apple = new Apple(-1, 7, 1, 1);
 
 	m_static_objects.push_back(ground);
 	m_static_objects.push_back(random_block);

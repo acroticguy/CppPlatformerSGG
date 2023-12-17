@@ -10,6 +10,7 @@ public:
 	void init() override;
 	void draw() override;
 	virtual void activation() {}
-	Event();
+	Event(std::string & name) : GameObject(name){}
+	Event() {}
 	~Event();
 };

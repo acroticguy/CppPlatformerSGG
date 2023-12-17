@@ -7,6 +7,10 @@ void Player::update(float dt)
 {
 	float delta_t = dt / 1000.f;
 
+	frame_count += animation_cycle * delta_t;
+	int current_frame = (static_cast<int>(floor(frame_count)) % animation_cycle) + 1;
+	m_brush_player.texture = m_state->getAssetPath(m_name + "\\output_") + std::to_string(current_frame) + ".png";
+
 	vertical_v += gravity;
 	float jump_v = 15.f;
 
@@ -35,7 +39,7 @@ void Player::init()
 
 	m_brush_player.fill_opacity = 1.f;
 	m_brush_player.outline_opacity = 0.f;
-	m_brush_player.texture = m_state->getAssetPath("boy2.png");
+	m_brush_player.texture = m_state->getAssetPath(m_name + "\\output_1.png");
 }
 
 void Player::draw()

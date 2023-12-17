@@ -12,6 +12,8 @@ class Level : public GameObject {
 	float offset_x;
 	float offset_y;
 
+	float time;
+
 	std::vector<GameObject*> m_static_objects;
 	std::list<GameObject*> m_dynamic_objects;
 

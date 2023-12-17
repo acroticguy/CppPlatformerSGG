@@ -10,7 +10,7 @@ bool GameState::init()
 	m_level = new Level("Level0");
 	m_level->init();
 
-	m_player = new Player("Player");
+	m_player = new Player("Ninja Frog");
 	m_player->init();
 
 	graphics::preloadBitmaps(m_asset_path); //Load all PNGs in the memory

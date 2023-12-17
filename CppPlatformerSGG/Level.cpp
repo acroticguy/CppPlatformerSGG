@@ -2,9 +2,16 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Wall.h"
+#include "Collected.h"
 #include "PowerUp.h"
 #include "Apple.h"
+#include "Bananas.h"
 #include "Cherries.h"
+#include "Kiwi.h"
+#include "Melon.h"
+#include "Orange.h"
+#include "Pineapple.h"
+#include "Strawberry.h"
 #include "Enemy.h"
 #include <math.h>
 
@@ -53,12 +60,28 @@ void Level::init()
 	Wall* ground = new Wall(0, 8, 72, 1);
 	Wall* random_block = new Wall(3, 7, 3, 1);
 	Wall* random_block2 = new Wall(7, 6, 3, 1);
-	PowerUp* cherry = new Cherries(-1, 7, 1, 1);
+	PowerUp* apple = new Apple(-1, 7, 1, 1);
+	PowerUp* banana = new Bananas(-5, 7, 1, 1);
+	PowerUp* cherry = new Cherries(4, 5, 1, 1);
+	PowerUp* kiwi = new Kiwi(7, 7, 1, 1);
+	PowerUp* melon = new Melon(-10, 7, 1, 1);
+	PowerUp* orange = new Orange(10, 7, 1, 1);
+	PowerUp* ananas = new Pineapple(6, 5, 1, 1);
+	PowerUp* strawberry = new Strawberry(-14, 7, 1, 1);
+	PowerUp* collected = new Collected(-20, 7, 1, 1);
 
 	m_static_objects.push_back(ground);
 	m_static_objects.push_back(random_block);
 	m_static_objects.push_back(random_block2);
+	m_static_objects.push_back(apple);
+	m_static_objects.push_back(banana);
 	m_static_objects.push_back(cherry);
+	m_static_objects.push_back(kiwi);
+	m_static_objects.push_back(melon);
+	m_static_objects.push_back(orange);
+	m_static_objects.push_back(ananas);
+	m_static_objects.push_back(strawberry);
+	m_static_objects.push_back(collected);
 
 	for (auto p_gob : m_static_objects) {
 		if (p_gob) {

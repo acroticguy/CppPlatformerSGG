@@ -48,6 +48,27 @@
     <ClCompile Include="Cherries.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Kiwi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Melon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Orange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pineapple.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Strawberry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bananas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collected.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
@@ -83,7 +104,25 @@
     <ClInclude Include="Cherries.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Banana.h">
+    <ClInclude Include="Bananas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kiwi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Melon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Orange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pineapple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Strawberry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collected.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

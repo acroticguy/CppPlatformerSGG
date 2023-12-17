@@ -136,29 +136,42 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Apple.cpp" />
+    <ClCompile Include="Bananas.cpp" />
     <ClCompile Include="Cherries.cpp" />
+    <ClCompile Include="Collected.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Kiwi.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Melon.cpp" />
+    <ClCompile Include="Orange.cpp" />
+    <ClCompile Include="Pineapple.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="Strawberry.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
-    <ClInclude Include="Banana.h" />
+    <ClInclude Include="Bananas.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="Cherries.h" />
+    <ClInclude Include="Collected.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Kiwi.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Melon.h" />
+    <ClInclude Include="Orange.h" />
+    <ClInclude Include="Pineapple.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="Strawberry.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

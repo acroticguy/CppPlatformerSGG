@@ -9,6 +9,7 @@ class Player: public GameObject, public Box {
 	const float terminal_v = 20.f;
 
 	int animation_cycle = 11;
+	float direction = 1.f;
 
 	float gravity = 1.f;
 	float vertical_v = 0.f;

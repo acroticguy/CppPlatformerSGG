@@ -4,6 +4,7 @@
 #include "Wall.h"
 #include "PowerUp.h"
 #include "Apple.h"
+#include "Cherries.h"
 #include "Enemy.h"
 #include <math.h>
 
@@ -29,7 +30,7 @@ void Level::update(float dt)
 		}
 		time += delta_t;
 		int current_sec = static_cast<int>(floor(time));
-		if (current_sec % 50 == 49) {
+		if (current_sec % 500 == 499) {
 			Enemy* opp = new Enemy(m_state->getPlayer()->m_pos_y);
 			opp->init();
 			m_dynamic_objects.push_back(opp);
@@ -52,12 +53,12 @@ void Level::init()
 	Wall* ground = new Wall(0, 8, 72, 1);
 	Wall* random_block = new Wall(3, 7, 3, 1);
 	Wall* random_block2 = new Wall(7, 6, 3, 1);
-	PowerUp* apple = new Apple(-1, 7, 1, 1);
+	PowerUp* cherry = new Cherries(-1, 7, 1, 1);
 
 	m_static_objects.push_back(ground);
 	m_static_objects.push_back(random_block);
 	m_static_objects.push_back(random_block2);
-	m_static_objects.push_back(apple);
+	m_static_objects.push_back(cherry);
 
 	for (auto p_gob : m_static_objects) {
 		if (p_gob) {

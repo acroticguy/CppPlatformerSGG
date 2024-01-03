@@ -138,7 +138,6 @@
     <ClCompile Include="Apple.cpp" />
     <ClCompile Include="Bananas.cpp" />
     <ClCompile Include="Cherries.cpp" />
-    <ClCompile Include="Collected.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -152,6 +151,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Strawberry.cpp" />
+    <ClCompile Include="vWall.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +159,6 @@
     <ClInclude Include="Bananas.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="Cherries.h" />
-    <ClInclude Include="Collected.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObject.h" />
@@ -172,6 +171,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Strawberry.h" />
+    <ClInclude Include="vWall.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

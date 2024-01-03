@@ -7,6 +7,7 @@ class Enemy : public GameObject, public Box {
 	graphics::Brush m_brush_enemy;
 	float ve = 2.f;
 	float m_pos_y;
+	float exit_point;
 	int direction = 1;
 	
 public:

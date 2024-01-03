@@ -6,6 +6,7 @@ void Enemy::update(float dt)
 {
 	float delta_t = dt / 1000.f;
 	
+	m_active = fabs(m_pos_x) <= fabs(exit_point);
 
 	m_pos_x += direction * ve * delta_t;
 
@@ -15,6 +16,7 @@ void Enemy::update(float dt)
 void Enemy::init()
 {
 	m_pos_x = direction * -(m_state->getBackgroundWidth() / 2 + 1);
+	exit_point = -m_pos_x;
 	m_brush_enemy.fill_opacity = 1.f;
 	m_brush_enemy.outline_opacity = 0.f;
 	m_brush_enemy.texture = m_state->getAssetPath("enemy.png");

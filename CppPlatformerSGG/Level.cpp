@@ -2,7 +2,6 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Wall.h"
-#include "Collected.h"
 #include "PowerUp.h"
 #include "Apple.h"
 #include "Bananas.h"
@@ -13,6 +12,7 @@
 #include "Pineapple.h"
 #include "Strawberry.h"
 #include "Enemy.h"
+#include "vWall.h"
 #include <math.h>
 
 void Level::update(float dt)
@@ -20,19 +20,14 @@ void Level::update(float dt)
 	float delta_t = dt / 10.f;
 	if (m_state->getPlayer()->isActive()) {
 		m_state->getPlayer()->update(dt);
-		for (auto p_gob : m_static_objects) {
+		for (auto& p_gob : m_static_objects) {
 			p_gob->update(dt);
-			Wall* p_wall = dynamic_cast<Wall*>(p_gob); // Cast Wall* in order to be able to be treated as Box when we use intersect() methods later
-			if (p_wall != nullptr) {
-				float collision_offset = m_state->getPlayer()->intersectDown(*p_wall);
-				if (collision_offset < 0.f) {
-					m_state->getPlayer()->setVerticalV(0.f);
-					m_state->getPlayer()->m_pos_y += collision_offset;
-					m_state->getInstance()->m_global_collision = true;
-				}
-				else {
-					m_state->getInstance()->m_global_collision = false;
-				}
+		}
+
+		for (auto& p_pwr : m_power_ups) {
+			p_pwr->update(dt);
+			if (m_state->getPlayer()->intersect(*p_pwr) && !p_pwr->is_collected) {
+				p_pwr->is_collected = true;
 			}
 		}
 		time += delta_t;
@@ -43,8 +38,17 @@ void Level::update(float dt)
 			m_dynamic_objects.push_back(opp);
 		}
 
-		for (auto p_gob : m_dynamic_objects) {
-			p_gob->update(dt);
+		for (auto it = m_dynamic_objects.begin(); it != m_dynamic_objects.end();) {
+			auto p_gob = *it;  // Get the pointer from the iterator.
+
+			if (p_gob->isActive()) {
+				p_gob->update(dt);
+				++it;  // Move to the next element.
+			}
+			else {
+				it = m_dynamic_objects.erase(it);  // Erase returns the iterator to the next element.
+				delete p_gob;
+			}
 		}
 	}
 
@@ -57,9 +61,12 @@ void Level::init()
 	m_brush_background.outline_opacity = 0.f;
 	m_brush_background.texture = m_state->getAssetPath("profilebg.png");
 
-	Wall* ground = new Wall(0, 8, 72, 1);
-	Wall* random_block = new Wall(3, 7, 3, 1);
-	Wall* random_block2 = new Wall(7, 6, 3, 1);
+	Wall* ground = new Wall(-32, 32, 8, 8, "Grass");
+	Wall* random_block = new Wall(1, 3, 7, 7, "Grass");
+	Wall* wall_left = new Wall(-31.5f, -31.5f, 0, 7, "Wall");
+	Wall* wall_right = new Wall(31.5f, 31.5f, 0, 7, "Wall");
+	/*Wall* random_block2 = new Wall(6, 8, 5, 6, "Grass");*/
+
 	PowerUp* apple = new Apple(-1, 7, 1, 1);
 	PowerUp* banana = new Bananas(-5, 7, 1, 1);
 	PowerUp* cherry = new Cherries(4, 5, 1, 1);
@@ -68,27 +75,39 @@ void Level::init()
 	PowerUp* orange = new Orange(10, 7, 1, 1);
 	PowerUp* ananas = new Pineapple(6, 5, 1, 1);
 	PowerUp* strawberry = new Strawberry(-14, 7, 1, 1);
-	PowerUp* collected = new Collected(-20, 7, 1, 1);
 
 	m_static_objects.push_back(ground);
 	m_static_objects.push_back(random_block);
-	m_static_objects.push_back(random_block2);
-	m_static_objects.push_back(apple);
-	m_static_objects.push_back(banana);
-	m_static_objects.push_back(cherry);
-	m_static_objects.push_back(kiwi);
-	m_static_objects.push_back(melon);
-	m_static_objects.push_back(orange);
-	m_static_objects.push_back(ananas);
-	m_static_objects.push_back(strawberry);
-	m_static_objects.push_back(collected);
+	m_static_objects.push_back(wall_left);
+	m_static_objects.push_back(wall_right);
+	/*m_static_objects.push_back(random_block2);*/
+	m_power_ups.push_back(apple);
+	m_power_ups.push_back(banana);
+	m_power_ups.push_back(cherry);
+	m_power_ups.push_back(kiwi);
+	m_power_ups.push_back(melon);
+	m_power_ups.push_back(orange);
+	m_power_ups.push_back(ananas);
+	m_power_ups.push_back(strawberry);
 
-	for (auto p_gob : m_static_objects) {
+	/*for (int i = 0; i < 8; i++) {
+		vWall* leftWall_i = new vWall(-31.5, i, 1, 1);
+		vWall* rightWall_i = new vWall(31.5, i, 1, 1);
+		m_static_objects.push_back(leftWall_i);
+		m_static_objects.push_back(rightWall_i);
+	}*/
+
+	for (auto& p_gob : m_static_objects) {
 		if (p_gob) {
 			p_gob->init();
 		}
 	}
-	for (auto p_gob : m_dynamic_objects) {
+	for (auto& p_pwr : m_power_ups) {
+		if (p_pwr) {
+			p_pwr->init();
+		}
+	}
+	for (auto& p_gob : m_dynamic_objects) {
 		if (p_gob) {
 			p_gob->init();
 		}
@@ -119,6 +138,11 @@ void Level::draw()
 			p_gob->draw();
 		}
 	}
+	for (auto p_pwr : m_power_ups) {
+		if (p_pwr) {
+			p_pwr->draw();
+		}
+	}
 	for (auto p_gob : m_dynamic_objects) {
 		if (p_gob) {
 			p_gob->draw();
@@ -129,7 +153,8 @@ void Level::draw()
 	graphics::setFont(m_state->getAssetPath("orange juice 2.0.ttf"));
 	graphics::drawText(1, 1, 1, std::string("x = ") + std::to_string(offset_x), br);
 	graphics::drawText(1, 2, 1, std::string("y = ") + std::to_string(offset_y), br);
-	graphics::drawText(1, 3, 1, std::string("We Collided: ") + std::to_string(m_state->getInstance()->m_global_collision), br);
+	graphics::drawText(1, 3, 1, std::string("Enemies = ") + std::to_string(m_dynamic_objects.size()), br);
+	//graphics::drawText(1, 4, 1, std::string("Side Col = ") + std::to_string(side_col), br);
 }
 
 Level::Level(const std::string& name) {}

@@ -1,10 +1,2 @@
-﻿  Collected.cpp
-  Level.cpp
-  Melon.cpp
-  Orange.cpp
-  Pineapple.cpp
-  Strawberry.cpp
-  Generating Code...
-sggd.lib(fonts.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(fonts.obj)' or at ''; linking object as if no debug info
-sggd.lib(GLbackend.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(GLbackend.obj)' or at ''; linking object as if no debug info
-  CppPlatformerSGG.vcxproj -> C:\Users\vanfo\OneDrive - aueb.gr\OPA\3ο Εξάμηνο\INF232 - Προγραμματισμός Υπολογιστών με C++\Εργασία\Git\CppPlatformerSGG\bin\CppPlatformerSGGd.exe
+﻿  Player.cpp
+  CppPlatformerSGG.vcxproj -> D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe

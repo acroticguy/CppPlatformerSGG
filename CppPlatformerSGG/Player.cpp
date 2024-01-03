@@ -17,10 +17,12 @@ void Player::update(float dt)
 	if (graphics::getKeyState(graphics::SCANCODE_A) || graphics::getKeyState(graphics::SCANCODE_LEFT)) { m_pos_x -= delta_t * v; direction = -1.f;}
 	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT)) { m_pos_x += delta_t * v; direction = 1.f;}
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP)) { m_pos_y -= delta_t * jump_v;}
-	if (graphics::getKeyState(graphics::SCANCODE_S) || graphics::getKeyState(graphics::SCANCODE_DOWN)) { m_pos_y = std::min(7.01f, m_pos_y + v * delta_t);
+	if (graphics::getKeyState(graphics::SCANCODE_S) || graphics::getKeyState(graphics::SCANCODE_DOWN)) { m_pos_y = std::min(7.2f, m_pos_y + v * delta_t);
 	}
 
-	m_pos_y = std::min(7.01f, m_pos_y + vertical_v * delta_t);
+	// We wanted to prevent the player from falling under the map, so we originally set a min height of 7. Then, since there was no collision with the ground, we couldn't eliminate the vertical velocity. That's why we used 7.01, to barely have the player stand in the ground.
+
+	m_pos_y = std::min(7.2f, m_pos_y + vertical_v * delta_t);
 
 	vertical_v = (vertical_v > terminal_v) ? terminal_v : vertical_v + gravity * delta_t / 20;
 
@@ -35,11 +37,14 @@ void Player::init()
 	m_pos_x = -25.f;
 	m_pos_y = 0.f;
 
+	/*m_width = 0.8f;
+	m_height = 0.8f;*/
+
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.f - m_pos_x;
 	m_state->m_global_offset_y = m_state->getCanvasHeight() / 2.f - m_pos_y;
 
 	m_brush_player.fill_opacity = 1.f;
-	m_brush_player.outline_opacity = 0.f;
+	m_brush_player.outline_opacity = 1.f;
 	m_brush_player.texture = m_state->getAssetPath(m_name + "\\output_1.png");
 }
 
@@ -57,9 +62,8 @@ void Player::draw()
 		}
 	}
 	else {
-		graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, direction * m_width, m_height, m_brush_player);
+		graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, direction * m_width /** 1.25f*/, m_height /** 1.25f*/, m_brush_player);
 	}
-	//graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, m_width, m_height, m_brush_player);
 }
 
 void Player::setVerticalV(float new_v)

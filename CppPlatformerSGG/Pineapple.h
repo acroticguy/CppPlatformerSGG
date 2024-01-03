@@ -11,4 +11,5 @@ public:
 	void init() override;
 	void draw() override;
 	void activation() override;
+	std::string getName() const override { return m_name; };
 };

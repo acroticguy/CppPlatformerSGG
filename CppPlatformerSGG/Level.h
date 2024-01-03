@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "PowerUp.h"
 #include "graphics.h"
 #include <list>
 
@@ -15,6 +16,7 @@ class Level : public GameObject {
 	float time;
 
 	std::vector<GameObject*> m_static_objects;
+	std::vector<PowerUp*> m_power_ups;
 	std::list<GameObject*> m_dynamic_objects;
 
 public:

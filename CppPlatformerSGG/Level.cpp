@@ -12,7 +12,6 @@
 #include "Pineapple.h"
 #include "Strawberry.h"
 #include "Enemy.h"
-#include "vWall.h"
 #include <math.h>
 
 void Level::update(float dt)

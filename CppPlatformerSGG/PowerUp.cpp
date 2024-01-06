@@ -12,8 +12,7 @@ void PowerUp::update(float dt)
 			is_collected = false;
 			collected_frame = 0.f;
 		}
-	}
-	else {
+	} else {
 		frame_count += animation_cycle * dt / 1000.f; // In 1s we will have circled 1 animation
 		current_frame = (static_cast<int>(floor(frame_count)) % animation_cycle) + 1;
 		m_brush_power.texture = m_state->getAssetPath(this->getName() + "\\output_") + std::to_string(current_frame) + ".png";

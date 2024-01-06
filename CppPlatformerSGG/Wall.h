@@ -17,12 +17,12 @@ public:
 	Wall(std::string name) : GameObject(name) {
 
 	}
-	Wall(float s_x, float e_x, float s_y, float e_y, std::string name) {
+
+	Wall(float s_x, float e_x, float s_y, float e_y, std::string name) : GameObject(name) {
 		starting_x = s_x;
 		ending_x = e_x;
 		starting_y = s_y;
 		ending_y = e_y;
-		m_name = name;
 	}
 	void update(float dt) override;
 	void init() override;

@@ -1,14 +1,23 @@
 #include "PowerUp.h"
+#include "Player.h"
 
 void PowerUp::update(float dt)
 {
 	int current_frame;
-	if (is_collected) {
+	if (is_collected) {				
 		if (collected_frame == 0.f) { graphics::playSound(m_state->getAssetPath("pop.mp3"), 1.f, false); }
 		collected_frame += 1.5*collected_frame_sum * dt / 1000.f;
 		current_frame = (static_cast<int>(floor(collected_frame)) % collected_frame_sum) + 1;
 		m_brush_power.texture = m_state->getAssetPath("Collected\\output_") + std::to_string(current_frame) + ".png";
+		
 		if (current_frame >= 6) {
+			if (m_state->getPlayer()->getHealth() < 190) {//Van
+				m_state->getPlayer()->updateHealth(10);//Van
+			}
+			else if (m_state->getPlayer()->getHealth() < 200) {//Van
+				m_state->getPlayer()->updateHealth(200 - m_state->getPlayer()->getHealth());//Van
+			}
+			
 			is_collected = false;
 			collected_frame = 0.f;
 		}

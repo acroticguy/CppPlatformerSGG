@@ -1,7 +1,10 @@
 #pragma once
+#define SETCOLOR(c, r, g, b) {c[0]=r; c[1]=g; c[2]=b;}//Van
+
 #include "GameObject.h"
 #include "PowerUp.h"
 #include "graphics.h"
+#include "Enemy.h"//Van
 #include <list>
 
 class Level : public GameObject {
@@ -15,9 +18,15 @@ class Level : public GameObject {
 
 	float time;
 
+
+	int enemies_killed = 0;//Van
+	
+
+
 	std::vector<GameObject*> m_static_objects;
 	std::vector<PowerUp*> m_power_ups;
 	std::list<GameObject*> m_dynamic_objects;
+	std::list<Enemy*> m_Enemies;//Van
 
 public:
 	void update(float dt) override;

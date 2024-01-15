@@ -12,6 +12,8 @@ void Wall::update(float dt)
 		}
 
 		collision_offset = m_state->getPlayer()->intersectSideways(*box);
+		//if (collision_offset < 0.f) {
+
 		if (collision_offset != 0.f) {
 			side_col = collision_offset;
 			m_state->getPlayer()->m_pos_x += collision_offset;

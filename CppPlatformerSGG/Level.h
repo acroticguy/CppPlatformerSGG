@@ -18,13 +18,8 @@ class Level : public GameObject {
 
 	float time;
 
-
-	int enemies_killed = 0;//Van
-	
-
-
 	std::vector<GameObject*> m_static_objects;
-	std::vector<PowerUp*> m_power_ups;
+	std::list<PowerUp*> m_power_ups;
 	std::list<GameObject*> m_dynamic_objects;
 	std::list<Enemy*> m_Enemies;//Van
 

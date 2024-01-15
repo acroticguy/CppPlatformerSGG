@@ -19,10 +19,9 @@ void Level::update(float dt)
 	
 	float delta_t = dt / 10.f;
 
-	/*Vangelis - Add countdown for payer's health*/
+	/*Vangelis - Add countdown for player's health*/
 	m_state->getPlayer()->getHealth() <= 0 ? m_state->getPlayer()->updateHealth(0) : m_state->getPlayer()->updateHealth(-delta_t / 100);//Van
 	/*Vangelis*/
-
 
 	if (m_state->getPlayer()->isActive()) {
 		m_state->getPlayer()->update(dt);
@@ -30,10 +29,16 @@ void Level::update(float dt)
 			p_gob->update(dt);
 		}
 
-		for (auto& p_pwr : m_power_ups) {
+		for (auto it = m_power_ups.begin(); it != m_power_ups.end();) {
+			auto p_pwr = *it;
 			p_pwr->update(dt);
 			if (m_state->getPlayer()->intersect(*p_pwr) && !p_pwr->is_collected) {
 				p_pwr->is_collected = true;	
+			}
+
+			if (!p_pwr->isActive()) {
+				it = m_power_ups.erase(it);
+				delete p_pwr;
 			}
 		}
 
@@ -45,8 +50,6 @@ void Level::update(float dt)
 			opp->init();
 			m_Enemies.push_back(opp);			
 		}
-
-		
 		
 		for (auto it = m_Enemies.begin(); it != m_Enemies.end();) {
 			auto p_opp = *it;  // Get the pointer from the iterator.			
@@ -58,11 +61,10 @@ void Level::update(float dt)
 
 						float collision_offset = m_state->getPlayer()->intersectDown(*p_opp);
 						if (collision_offset < 0.f && collision_offset >= -0.05) {
-							m_state->getPlayer()->setVerticalV(0.f);
-							m_state->getPlayer()->m_pos_y += collision_offset;
 
+							m_state->getPlayer()->setVerticalV(0.f);
+							m_state->getPlayer()->m_pos_y -= (delta_t / 100.f) * m_state->getPlayer()->jump_v * 5;
 							p_opp->setKilled(true);//Van
-							enemies_killed += 1;//Van
 
 						}
 						
@@ -200,8 +202,7 @@ void Level::draw()
 	graphics::drawText(1, 1.5, 0.5, std::string("y = ") + std::to_string(offset_y), br);
 	graphics::drawText(1, 2.0, 0.5, std::string("Enemies = ") + std::to_string(m_Enemies.size()), br);
 	graphics::drawText(1, 2.5, 0.5, std::string("Hero is hit = ") + std::to_string(m_state->getPlayer()->is_hit), br);
-	graphics::drawText(1, 3.0, 0.5, std::string("Enemies killed = ") + std::to_string(enemies_killed), br);
-	graphics::drawText(1, 3.5, 0.5, std::string("Hero health = ") + std::to_string(m_state->getPlayer()->getHealth()), br);
+	graphics::drawText(1, 3.0, 0.5, std::string("Enemies killed = ") + std::to_string(m_state->getPlayer()->enemies_killed), br);
 	
 	graphics::Brush br_lives;
 	br_lives.outline_opacity = 0.f;
@@ -216,7 +217,7 @@ void Level::draw()
 	br_lives.gradient_dir_v = 0.3f;
 
 
-	/*Vangelis*/
+	/*Vangelis - Health Bar*/
 
 	graphics::drawText(8.4, 0.7, 0.5, std::string("Life"), br);
 	graphics::Brush br_out_health_box;
@@ -241,39 +242,22 @@ void Level::draw()
 	else  {		
 		SETCOLOR(br_in_health_box.fill_color, 1.f, 0.f, 0.f);
 	}
+
 	float box_offset = (6 - 6*(m_state->getPlayer()->getHealth() / m_state->getPlayer()->initHealth > 1 ? 1 : m_state->getPlayer()->getHealth() / m_state->getPlayer()->initHealth < 0 ? 0 : (m_state->getPlayer()->getHealth() / m_state->getPlayer()->initHealth)))/2;
 	graphics::drawRect(12.5-box_offset, 0.5, 6*(m_state->getPlayer()->getHealth() / m_state->getPlayer()->initHealth > 1 ? 1 : m_state->getPlayer()->getHealth() / m_state->getPlayer()->initHealth < 0 ? 0:(m_state->getPlayer()->getHealth() / m_state->getPlayer()->initHealth)), 0.5, br_in_health_box);
 	graphics::drawText(14, 0.7, 0.5, std::to_string(static_cast<int>((m_state->getPlayer()->getHealth() / m_state->getPlayer()->initHealth)*100)) + std::string(" %"), br);
-	/*Vangelis*/
-
-	//graphics::drawText(1, 4, 1, std::string("Side Col = ") + std::to_string(side_col), br);
 
 	/*Vangelis - Add Game Over*/
 	if (m_state->getPlayer()->getHealth() <= 0) {
 		graphics::Brush br;
-		//graphics::drawText(m_state->getCanvasWidth()/2, m_state->getCanvasHeight()/2, 1.5, std::string("G A M E   O V E R "), br);
-		std::string gameover = std::string("G A M E   O V E R ");
 
-		float w = m_state->getCanvasWidth();
-		float h = m_state->getCanvasHeight();
-		float temp = m_state->m_global_offset_x - w / 2;
-		/*
-		if (m_state->isOnEdge()) {// is edge
-			if (temp > 0) {// left
-				graphics::drawText(2 * w + m_state->getPlayer()->m_pos_x, h / 2, 1, gameover, br);
-			}
-			else { // right
-				graphics::drawText(-w + m_state->getPlayer()->m_pos_x, h / 2, 1, gameover, br);
-			}
-		}
-		else {
-		*/
-			graphics::drawText(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, 1, gameover, br);
-		
+		br.texture = m_state->getAssetPath("game_over.png");
+		br.fill_opacity = 1.f;
+		br.outline_opacity = 0.f;
+		graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, m_state->getCanvasWidth() / 2, 1, br);
 
-		graphics::playSound("assets\\game-over.wav", 0.5f, false);
+		graphics::playSound("assets\\game-over.wav", 0.2f, false);
 		m_state->getPlayer()->setActive(false);
-		//delete m_state->getPlayer();
 	}
 
 

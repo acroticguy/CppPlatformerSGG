@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Player.h"
 #include "graphics.h"
 #include "GameState.h"
 
@@ -31,16 +32,15 @@ void Enemy::update(float dt)
 	int current_frame;
 	if (is_killed) {
 		if (kill_frame == 0.f) { graphics::playSound(m_state->getAssetPath("Enemy_hit.mp3"), 1.f, false); }
-		kill_frame += 3.5 * kill_frame_sum * dt / 1000.f;
+		kill_frame += 1.5 * kill_frame_sum * dt / 1000.f;
 		current_frame = (static_cast<int>(floor(kill_frame)) % kill_frame_sum) + 1;
-		m_brush_enemy.texture = m_state->getAssetPath("Hit\\Enemy\\output_") + std::to_string(current_frame) + ".png";
-		direction *= -1;//Van
-		exit_point = m_pos_x+0.01 ;//Van
+		m_brush_enemy.texture = m_state->getAssetPath("Hit\\temp\\output_") + std::to_string(current_frame) + ".png";
 		
 		
 
-		if (current_frame >= 6) {			
-			is_killed = false;
+		if (current_frame >= 7) {
+			m_state->getPlayer()->enemies_killed += 1;//Van
+			m_active = false;
 			kill_frame = 0.f;
 		}
 	}

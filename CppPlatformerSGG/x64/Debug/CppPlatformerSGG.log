@@ -1,6 +1,3 @@
-﻿  Level.cpp
-C:\Users\vanfo\OneDrive - aueb.gr\OPA\3ο Εξάμηνο\INF232 - Προγραμματισμός Υπολογιστών με C++\Εργασία\Git\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(221,26): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\vanfo\OneDrive - aueb.gr\OPA\3ο Εξάμηνο\INF232 - Προγραμματισμός Υπολογιστών με C++\Εργασία\Git\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(221,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\vanfo\OneDrive - aueb.gr\OPA\3ο Εξάμηνο\INF232 - Προγραμματισμός Υπολογιστών με C++\Εργασία\Git\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(245,25): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\vanfo\OneDrive - aueb.gr\OPA\3ο Εξάμηνο\INF232 - Προγραμματισμός Υπολογιστών με C++\Εργασία\Git\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(246,25): warning C4305: 'argument': truncation from 'double' to 'float'
-  CppPlatformerSGG.vcxproj -> C:\Users\vanfo\OneDrive - aueb.gr\OPA\3ο Εξάμηνο\INF232 - Προγραμματισμός Υπολογιστών με C++\Εργασία\Git\CppPlatformerSGG\bin\CppPlatformerSGGd.exe
+﻿  Player.cpp
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Player.cpp(45,41): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  CppPlatformerSGG.vcxproj -> D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe

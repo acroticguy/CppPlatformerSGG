@@ -24,7 +24,10 @@ public:
 
 	}
 
+	int enemies_killed = 0;//Van
+
 	float initHealth = 200;//Van
+	float jump_v = 15.f;
 	bool is_hit = false;//Van
 	float getHealth();//Van
 	void setHealth(float h);//Van

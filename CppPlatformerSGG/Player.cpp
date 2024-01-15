@@ -44,8 +44,8 @@ void Player::update(float dt)
 		if (hit_frame == 0.f) { graphics::playSound(m_state->getAssetPath("Hero_hit.mp3"), 1.f, false); }
 		hit_frame += 1.5 * hit_frame_sum * dt / 1000.f;
 		current_frame = (static_cast<int>(floor(hit_frame)) % hit_frame_sum) + 1;
-		m_brush_player.texture = m_state->getAssetPath("Hit\\Hero\\output_") + std::to_string(current_frame) + ".png";
-		if (current_frame >= 6) {
+		m_brush_player.texture = m_state->getAssetPath(m_name + "\\Hit\\output_") + std::to_string(current_frame) + ".png";
+		if (current_frame >= 7) {
 			is_hit = false;
 			hit_frame = 0.f;
 		}
@@ -58,7 +58,7 @@ void Player::update(float dt)
 
 
 	vertical_v += gravity;
-	float jump_v = 15.f;
+	
 
 	if (graphics::getKeyState(graphics::SCANCODE_A) || graphics::getKeyState(graphics::SCANCODE_LEFT)) { m_pos_x -= delta_t * v; direction = -1.f;}
 	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT)) { m_pos_x += delta_t * v; direction = 1.f;}
@@ -89,7 +89,7 @@ void Player::init()
 	m_state->m_global_offset_y = m_state->getCanvasHeight() / 2.f - m_pos_y;
 
 	m_brush_player.fill_opacity = 1.f;
-	m_brush_player.outline_opacity = 1.f;
+	m_brush_player.outline_opacity = 0.f;
 	m_brush_player.texture = m_state->getAssetPath(m_name + "\\output_1.png");
 }
 

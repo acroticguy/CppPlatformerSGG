@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -138,6 +138,7 @@
     <ClCompile Include="Apple.cpp" />
     <ClCompile Include="Bananas.cpp" />
     <ClCompile Include="Cherries.cpp" />
+    <ClCompile Include="End.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Melon.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Orange.cpp" />
     <ClCompile Include="Pineapple.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -158,6 +160,7 @@
     <ClInclude Include="Bananas.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="Cherries.h" />
+    <ClInclude Include="End.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObject.h" />
@@ -165,6 +168,7 @@
     <ClInclude Include="Kiwi.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Melon.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Orange.h" />
     <ClInclude Include="Pineapple.h" />
     <ClInclude Include="Player.h" />

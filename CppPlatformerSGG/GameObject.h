@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "box.h"
 #include <string>
 #include <math.h>
 class GameObject
@@ -13,10 +14,15 @@ protected:
 	int animation_cycle;
 	bool m_active = true;
 
+	
+
 	float w = m_state->getCanvasWidth();
 	float h = m_state->getCanvasHeight();
 
 public:
+	struct Box* hitbox;
+	graphics::Brush m_brush_hbox;
+
 	GameObject(const std::string& name = "");
 	virtual void update(float dt) {}
 	virtual void init() {}

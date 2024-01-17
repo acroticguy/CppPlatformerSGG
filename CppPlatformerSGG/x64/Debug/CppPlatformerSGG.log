@@ -1,3 +1,2 @@
-﻿  Player.cpp
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Player.cpp(45,41): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+﻿  GameState.cpp
   CppPlatformerSGG.vcxproj -> D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe

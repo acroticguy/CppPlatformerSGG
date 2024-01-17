@@ -2,6 +2,7 @@
 #include "Event.h"
 #include "box.h"
 #include "graphics.h"
+
 class PowerUp : public Event, public Box {
 private:
 	std::string m_name = "";
@@ -14,9 +15,11 @@ protected:
 	float collected_frame = 0.f;
 
 	int value;
+	int health_given;
 
 public:
 	PowerUp(float x, float y, float w, float h) : Box(x, y, w, h) {
+		hitbox = new Box(x, y, 0.5, 0.5);
 	}
 	bool is_collected = false;
 	void update(float dt) override;

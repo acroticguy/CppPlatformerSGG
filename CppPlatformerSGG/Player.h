@@ -21,7 +21,7 @@ class Player: public GameObject, public Box {
 
 public:
 	Player(std::string name) : GameObject(name) {
-
+		hitbox = new Box(m_pos_x, m_pos_y, 1, 1);
 	}
 
 	int enemies_killed = 0;//Van

@@ -30,6 +30,8 @@ public:
 	void draw();
 	void update(float dt);
 
+	bool in_menu = false;
+
 
 	~GameState();
 	static GameState* getInstance();

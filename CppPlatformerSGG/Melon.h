@@ -3,6 +3,7 @@
 
 class Melon : public PowerUp {
 	int value = 400;
+	int health_given = 15;
 	std::string m_name = "Melon";
 public:
 	Melon(float x, float y, float w, float h) : PowerUp(x, y, w, h) {

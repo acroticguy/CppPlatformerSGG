@@ -17,6 +17,7 @@ class Level : public GameObject {
 	float offset_y;
 
 	float time;
+	std::string soundtrack = "Undertale - Bonetrousle.mp3";
 
 	std::vector<GameObject*> m_static_objects;
 	std::list<PowerUp*> m_power_ups;

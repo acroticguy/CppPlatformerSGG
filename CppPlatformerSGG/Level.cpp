@@ -12,6 +12,7 @@
 #include "Pineapple.h"
 #include "Strawberry.h"
 #include "Enemy.h"
+#include "End.h"
 #include <math.h>
 
 void Level::update(float dt)
@@ -29,16 +30,10 @@ void Level::update(float dt)
 			p_gob->update(dt);
 		}
 
-		for (auto it = m_power_ups.begin(); it != m_power_ups.end();) {
-			auto p_pwr = *it;
-			p_pwr->update(dt);
-			if (m_state->getPlayer()->intersect(*p_pwr) && !p_pwr->is_collected) {
+		for (auto& p_pwr : m_power_ups) {
+			if (p_pwr->isActive()) { p_pwr->update(dt); }
+			if (m_state->getPlayer()->hitbox->intersect(*p_pwr->hitbox) && !p_pwr->is_collected) {
 				p_pwr->is_collected = true;	
-			}
-
-			if (!p_pwr->isActive()) {
-				it = m_power_ups.erase(it);
-				delete p_pwr;
 			}
 		}
 
@@ -46,41 +41,37 @@ void Level::update(float dt)
 		int current_sec = static_cast<int>(floor(time));
 		if (current_sec % 500 == 499) {
 			//Enemy* opp = new Enemy(m_state->getPlayer()->m_pos_y);
-			Enemy* opp = new Enemy(1,m_state->getPlayer()->m_pos_y,1,1);//Van
+			Enemy* opp = new Enemy(1,m_state->getPlayer()->m_pos_y,1.5,1,"Bat");//Van
 			opp->init();
-			m_Enemies.push_back(opp);			
+			m_Enemies.push_back(opp);
 		}
 		
 		for (auto it = m_Enemies.begin(); it != m_Enemies.end();) {
 			auto p_opp = *it;  // Get the pointer from the iterator.			
 			if (p_opp->isActive()) {
 				p_opp->update(dt);
-				for (auto& p_opp : m_Enemies) {
-					if (m_state->getPlayer()->intersectDown(*p_opp)) {
-
-
-						float collision_offset = m_state->getPlayer()->intersectDown(*p_opp);
-						if (collision_offset < 0.f && collision_offset >= -0.05) {
-
-							m_state->getPlayer()->setVerticalV(0.f);
-							m_state->getPlayer()->m_pos_y -= (delta_t / 100.f) * m_state->getPlayer()->jump_v * 5;
-							p_opp->setKilled(true);//Van
-
-						}
-						
+				if (p_opp->is_killed) { 
+					++it;
+					continue; 
+				}
+				if (m_state->getPlayer()->hitbox->intersectDown(*p_opp->hitbox)) {
+					float collision_offset = m_state->getPlayer()->hitbox->intersectDown(*p_opp->hitbox);
+					if (collision_offset < 0.f /*&& collision_offset >= -0.05*/) {
+						m_state->getPlayer()->setVerticalV(0.f);
+						m_state->getPlayer()->m_pos_y -= (delta_t / 100.f) * m_state->getPlayer()->jump_v * 5;
+						p_opp->setKilled(true);//Van
 					}
+				}
 
-					if (m_state->getPlayer()->intersectSideways(*p_opp)) {
-						m_state->getPlayer()->is_hit = true;
+				if (m_state->getPlayer()->hitbox->intersectSideways(*p_opp->hitbox)) {
+					m_state->getPlayer()->is_hit = true;
 
-						if (m_state->getPlayer()->getHealth() >= 0.5) {//Van
-							m_state->getPlayer()->updateHealth(-0.5);//Van
-						}
-						else {//Van
-							m_state->getPlayer()->setHealth(0);//Van
-						}
+					if (m_state->getPlayer()->getHealth() >= 0.5) {//Van
+						m_state->getPlayer()->updateHealth(-0.5);//Van
 					}
-					
+					else {//Van
+						m_state->getPlayer()->setHealth(0);//Van
+					}
 				}
 				++it;  // Move to the next element.
 			}
@@ -91,13 +82,11 @@ void Level::update(float dt)
 		}
 		
 	}
-
 	
 	GameObject::update(dt);
 }
 
 void Level::init()
-
 {
 	//m_state->getPlayer()->updateHealth(m_state->getPlayer()->initHealth);//Van
 	time = 0;
@@ -117,12 +106,13 @@ void Level::init()
 	PowerUp* ananas = new Pineapple(6, 5, 1, 1);
 	PowerUp* strawberry = new Strawberry(-14, 7, 1, 1);
 
-
+	End* fin = new End(30, 7, 1, 1);
 	
 	m_static_objects.push_back(ground);
 	m_static_objects.push_back(random_block);
 	m_static_objects.push_back(wall_left);
 	m_static_objects.push_back(wall_right);
+	m_static_objects.push_back(fin);
 	m_power_ups.push_back(apple);
 	m_power_ups.push_back(banana);
 	m_power_ups.push_back(cherry);
@@ -131,7 +121,6 @@ void Level::init()
 	m_power_ups.push_back(orange);
 	m_power_ups.push_back(ananas);
 	m_power_ups.push_back(strawberry);
-
 	
 	for (auto& p_gob : m_static_objects) {
 		if (p_gob) {
@@ -154,6 +143,8 @@ void Level::init()
 			p_opp->init();
 		}
 	}
+
+	graphics::playMusic(m_state->getAssetPath("Soundtracks\\" + soundtrack), 0.2f, true, 1500);
 }
 
 void Level::draw()
@@ -177,25 +168,26 @@ void Level::draw()
 
 	for (auto p_gob : m_static_objects) {
 		if (p_gob) {
-			p_gob->draw();
+			if (p_gob->isActive()) { p_gob->draw(); }
 		}
 	}
 	for (auto p_pwr : m_power_ups) {
 		if (p_pwr) {
-			p_pwr->draw();
+			if (p_pwr->isActive()) { p_pwr->draw(); }
 		}
 	}
 	for (auto p_gob : m_dynamic_objects) {
 		if (p_gob) {
-			p_gob->draw();
+			if (p_gob->isActive()) { p_gob->draw(); }
 		}
 	}
 	for (auto p_opp : m_Enemies) {
 		if (p_opp) {
-			p_opp->draw();
+			if (p_opp->isActive()) { p_opp->draw(); }
 		}
 	}
 
+	// Debug outputs
 	graphics::Brush br;
 	graphics::setFont(m_state->getAssetPath("orange juice 2.0.ttf"));
 	graphics::drawText(1, 1.0, 0.5, std::string("x = ") + std::to_string(offset_x), br);
@@ -250,7 +242,7 @@ void Level::draw()
 	/*Vangelis - Add Game Over*/
 	if (m_state->getPlayer()->getHealth() <= 0) {
 		graphics::Brush br;
-
+		graphics::stopMusic(500);
 		br.texture = m_state->getAssetPath("game_over.png");
 		br.fill_opacity = 1.f;
 		br.outline_opacity = 0.f;
@@ -258,8 +250,8 @@ void Level::draw()
 
 		graphics::playSound("assets\\game-over.wav", 0.2f, false);
 		m_state->getPlayer()->setActive(false);
+		m_state->in_menu = true;
 	}
-
 
 	/*Vangelis - Add Game Over*/
 }

@@ -10,7 +10,7 @@ bool GameState::init()
 	m_level = new Level("Level0");
 	m_level->init();
 
-	m_player = new Player("Ninja Frog");
+	m_player = new Player("Mask Dude");
 	m_player->init();
 
 	graphics::preloadBitmaps(m_asset_path); //Load all PNGs in the memory
@@ -22,7 +22,7 @@ void GameState::draw()
 	if (!m_level) {
 		return;
 	}
-	m_level->draw();
+	if (!in_menu) { m_level->draw(); }
 }
 
 void GameState::update(float dt)
@@ -36,9 +36,10 @@ void GameState::update(float dt)
 	{
 		graphics::playSound("assets\\hit1.wav", 1.0f, false);
 	}
-	m_level->update(dt);
-}
+	if (in_menu) {
 
+	} else { m_level->update(dt); }
+}
 
 GameState * GameState::getInstance()
 {
@@ -48,9 +49,9 @@ GameState * GameState::getInstance()
 	return m_unique_instance;
 }
 
-std::string GameState::getAssetPath(std::string image)
+std::string GameState::getAssetPath(std::string str)
 {
-	return m_asset_path + image;
+	return m_asset_path + str;
 }
 
 float GameState::getCanvasWidth()

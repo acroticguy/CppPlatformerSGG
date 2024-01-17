@@ -10,6 +10,8 @@ class Enemy : public GameObject, public Box {
 	float exit_point;
 	int direction = 1;
 
+	int animation_cycle = 7;
+
 	float kill_frame = 0.f;//Van
 	const int kill_frame_sum = 10;//Van
 	
@@ -19,7 +21,8 @@ public:
 			direction *= -1;
 		}
 	}
-	Enemy(float x, float y, float w, float h) : Box(x, y, w, h) {
+	Enemy(float x, float y, float w, float h, std::string name) : Box(x, y, w, h), GameObject(name) {
+		hitbox = new Box(x, y, w, h);
 		if (rand() % 2 == 0) {
 			direction *= -1;
 		}

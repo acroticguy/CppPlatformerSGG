@@ -49,8 +49,7 @@ void Player::update(float dt)
 			is_hit = false;
 			hit_frame = 0.f;
 		}
-	}
-	else {
+	} else {
 		frame_count += animation_cycle * dt / 1000.f; // In 1s we will have circled 1 animation
 		current_frame = (static_cast<int>(floor(frame_count)) % animation_cycle) + 1;
 		m_brush_player.texture = m_state->getAssetPath("Players\\" + m_name + "\\Idle\\output_") + std::to_string(current_frame) + ".png";
@@ -106,15 +105,21 @@ void Player::draw()
 	if (m_state->isOnEdge()) {// is edge
 		if (temp > 0) {// left
 			graphics::drawRect(2 * w + m_pos_x, h / 2, direction * m_width, m_height, m_brush_player);
+
+			//Debug Frame:
 			graphics::drawRect(2 * w + m_pos_x, h / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
 		}
 		else { // right
 			graphics::drawRect(-w + m_pos_x, h / 2, direction * m_width, m_height, m_brush_player);
+
+			//Debug Frame:
 			graphics::drawRect(-w + m_pos_x, h / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
 		}
 	}
 	else {
 		graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, direction * m_width, m_height, m_brush_player);
+
+		//Debug Frame:
 		graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
 	}
 }

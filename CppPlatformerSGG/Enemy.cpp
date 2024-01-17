@@ -18,8 +18,6 @@ float Enemy::getM_pos_y()
 	return m_pos_y;
 }
 
-
-
 void Enemy::update(float dt)
 {
 	float delta_t = dt / 1000.f;
@@ -75,15 +73,21 @@ void Enemy::draw() {
 	if (m_state->isOnEdge()) {
 		if (m_state->m_global_offset_x - w / 2 > 0) {
 			graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, Box::m_pos_y + m_state->m_global_offset_y, -direction * m_width, m_height, m_brush_enemy);
+
+			//Debug Frame:
 			graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, Box::m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
 		}
 		else {
 			graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, Box::m_pos_y + m_state->m_global_offset_y, -direction * m_width, m_height, m_brush_enemy);
+			
+			//Debug Frame:
 			graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, Box::m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
 		}
 	}
 	else {
 		graphics::drawRect(m_pos_x + m_state->m_global_offset_x, Box::m_pos_y + m_state->m_global_offset_y, -direction * m_width, m_height, m_brush_enemy);
+
+		//Debug Frame:
 		graphics::drawRect(m_pos_x + m_state->m_global_offset_x, Box::m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
 	}
 }

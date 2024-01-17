@@ -1,2 +1,5 @@
-﻿  GameState.cpp
+﻿  End.cpp
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\End.h(18,26): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'End.cpp')
+  
   CppPlatformerSGG.vcxproj -> D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe

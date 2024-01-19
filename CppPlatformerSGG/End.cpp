@@ -48,8 +48,8 @@ void End::draw()
 {
 	//YOU DON'T HAVE ENOUGH POINTS MESSAGE
 	if (m_state->getPlayer()->intersect(*this) && m_state->getPlayer()->score < score_required) {
-		graphics::drawText(2.5, 1, 0.5f,std::string("You don't have enough points to go through!"), m_brush_end);
-		graphics::drawText(2.5, 1.5, 0.5f, std::string("Score required: ") + std::to_string(score_required - m_state->getPlayer()->score), m_brush_end);
+		graphics::drawText(2.5, 1.5f, 0.5f,std::string("You don't have enough points to go through!"), m_brush_end);
+		graphics::drawText(2.5, 2.0f, 0.5f, std::string("Score required: ") + std::to_string(score_required - m_state->getPlayer()->score), m_brush_end);
 	}
 
 	if (m_state->isOnEdge()) {

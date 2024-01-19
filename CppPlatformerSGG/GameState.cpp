@@ -7,6 +7,8 @@ GameState* GameState::m_unique_instance = nullptr;
 
 bool GameState::init()
 {
+	graphics::setFont(this->getAssetPath("orange juice 2.0.ttf"));
+
 	m_level = new Level("Level0");
 	m_level->init();
 

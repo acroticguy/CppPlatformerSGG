@@ -7,7 +7,6 @@ class MainMenu: public Menu {
 
 	static MainMenu* instance;
 public:
-	std::string title;
 
 	MainMenu();
 	static MainMenu* getInstance();

@@ -189,8 +189,7 @@ void Level::draw()
 
 	// Debug outputs
 	graphics::Brush br;
-	graphics::setFont(m_state->getAssetPath("orange juice 2.0.ttf"));
-	graphics::drawText(1, 1.0f, 0.5f, std::string("Enemies killed = ") + std::to_string(m_state->getPlayer()->enemies_killed), br);
+	graphics::drawText(0.5, 1.0f, 0.5f, std::string("Enemies killed = ") + std::to_string(m_state->getPlayer()->enemies_killed), br);
 	if (m_state->debug_mode) {
 		graphics::drawText(1, 1.5f, 0.5f, std::string("x = ") + std::to_string(offset_x), br);
 		graphics::drawText(1, 2.0f, 0.5f, std::string("y = ") + std::to_string(offset_y), br);

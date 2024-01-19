@@ -5,11 +5,14 @@
 
 class End: public GameObject, public Box{
 private:
+	const int score_required = 5000;
+	const int transition_cycle = 26;
+	const int wave_cycle = 10;
+
 	graphics::Brush m_brush_end;
 	float frame_count = 0;
 	float active_count = 0;
-	int transition_cycle = 26;
-	int wave_cycle = 10;
+	
 	bool is_active = false;
 	bool animation_over = false;
 

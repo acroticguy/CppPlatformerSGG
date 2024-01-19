@@ -8,11 +8,15 @@ private:
 	std::string m_name = "";
 	const int collected_frame_sum = 6;
 protected:
-	graphics::Brush m_brush_power;
+	const int animation_cycle = 17;
 
-	int animation_cycle = 17;
+	graphics::Brush m_brush_power;
+	graphics::Brush m_brush_score_p;
+	
 	float frame_count= 0.f;
 	float collected_frame = 0.f;
+
+	float score_pos_offset = 0.f;
 
 	int value;
 	int health_given;
@@ -25,6 +29,8 @@ public:
 	void update(float dt) override;
 	void init() override;
 	void draw() override;
-	void activation() override;
+	void activation(float dt) override;
 	virtual std::string getName() const = 0;
+	virtual int getHeal() const = 0;
+	virtual int getScore() const = 0;
 };

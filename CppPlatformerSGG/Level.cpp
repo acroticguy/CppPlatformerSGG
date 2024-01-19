@@ -93,10 +93,10 @@ void Level::init()
 	m_brush_background.outline_opacity = 0.f;
 	m_brush_background.texture = m_state->getAssetPath("profilebg.png");
 
-	Wall* ground = new Wall(-32, 32, 8, 8, "Grass");
+	Wall* ground = new Wall(-m_state->getBackgroundWidth() / 2, m_state->getBackgroundWidth() / 2, 8, 8, "Grass");
 	Wall* random_block = new Wall(1, 3, 7, 7, "Grass");
-	Wall* wall_left = new Wall(-31.5f, -31.5f, 0, 7, "Wall");
-	Wall* wall_right = new Wall(31.5f, 31.5f, 0, 7, "Wall");
+	Wall* wall_left = new Wall(-(m_state->getBackgroundWidth() / 2 - 0.5f), -(m_state->getBackgroundWidth() / 2 - 0.5f), 0, m_state->getBackgroundHeight() / 2 - 1, "Wall");
+	Wall* wall_right = new Wall((m_state->getBackgroundWidth() / 2 - 0.5f), (m_state->getBackgroundWidth() / 2 - 0.5f), 0, m_state->getBackgroundHeight() / 2 - 1, "Wall");
 	PowerUp* apple = new Apple(-1, 7, 1, 1);
 	PowerUp* banana = new Bananas(-5, 7, 1, 1);
 	PowerUp* cherry = new Cherries(4, 5, 1, 1);
@@ -190,15 +190,16 @@ void Level::draw()
 	// Debug outputs
 	graphics::Brush br;
 	graphics::setFont(m_state->getAssetPath("orange juice 2.0.ttf"));
-	graphics::drawText(1, 1.0, 0.5, std::string("x = ") + std::to_string(offset_x), br);
-	graphics::drawText(1, 1.5, 0.5, std::string("y = ") + std::to_string(offset_y), br);
-	graphics::drawText(1, 2.0, 0.5, std::string("Enemies = ") + std::to_string(m_Enemies.size()), br);
-	graphics::drawText(1, 2.5, 0.5, std::string("Hero is hit = ") + std::to_string(m_state->getPlayer()->is_hit), br);
-	graphics::drawText(1, 3.0, 0.5, std::string("Enemies killed = ") + std::to_string(m_state->getPlayer()->enemies_killed), br);
+	graphics::drawText(1, 1.0f, 0.5f, std::string("Enemies killed = ") + std::to_string(m_state->getPlayer()->enemies_killed), br);
+	if (m_state->debug_mode) {
+		graphics::drawText(1, 1.5f, 0.5f, std::string("x = ") + std::to_string(offset_x), br);
+		graphics::drawText(1, 2.0f, 0.5f, std::string("y = ") + std::to_string(offset_y), br);
+		graphics::drawText(1, 2.5f, 0.5f, std::string("Enemies = ") + std::to_string(m_Enemies.size()), br);
+		graphics::drawText(1, 3.0f, 0.5f, std::string("Hero is hit = ") + std::to_string(m_state->getPlayer()->is_hit), br);
+	}
 	
 	graphics::Brush br_lives;
 	br_lives.outline_opacity = 0.f;
-	graphics::drawText(1, 0.5, 1, std::string("*"), br_lives);
 	//m_state->getPlayer()->getHealth() 
 	SETCOLOR(br_lives.fill_color, 1.f, 0.f, 0.f);
 	SETCOLOR(br_lives.fill_secondary_color, 1.f, 1.f, 1.f);

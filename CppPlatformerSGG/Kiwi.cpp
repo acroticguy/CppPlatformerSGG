@@ -15,7 +15,7 @@ void Kiwi::draw()
 	PowerUp::draw();
 }
 
-void Kiwi::activation()
+void Kiwi::activation(float dt)
 {
-	PowerUp::activation();
+	PowerUp::activation(dt);
 }

@@ -15,7 +15,7 @@ void Cherries::draw()
 	PowerUp::draw();
 }
 
-void Cherries::activation()
+void Cherries::activation(float dt)
 {
-	PowerUp::activation();
+	PowerUp::activation(dt);
 }

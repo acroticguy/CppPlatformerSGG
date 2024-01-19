@@ -15,7 +15,7 @@ void Pineapple::draw()
 	PowerUp::draw();
 }
 
-void Pineapple::activation()
+void Pineapple::activation(float dt)
 {
-	PowerUp::activation();
+	PowerUp::activation(dt);
 }

@@ -15,7 +15,7 @@ void Bananas::draw()
 	PowerUp::draw();
 }
 
-void Bananas::activation()
+void Bananas::activation(float dt)
 {
-	PowerUp::activation();
+	PowerUp::activation(dt);
 }

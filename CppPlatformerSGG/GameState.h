@@ -31,6 +31,7 @@ public:
 	void update(float dt);
 
 	bool in_menu = false;
+	bool debug_mode = false;
 
 
 	~GameState();

@@ -15,7 +15,7 @@ void Apple::draw()
 	PowerUp::draw();
 }
 
-void Apple::activation()
+void Apple::activation(float dt)
 {
-	PowerUp::activation();
+	PowerUp::activation(dt);
 }

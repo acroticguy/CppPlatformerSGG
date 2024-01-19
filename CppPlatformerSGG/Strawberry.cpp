@@ -15,7 +15,7 @@ void Strawberry::draw()
 	PowerUp::draw();
 }
 
-void Strawberry::activation()
+void Strawberry::activation(float dt)
 {
-	PowerUp::activation();
+	PowerUp::activation(dt);
 }

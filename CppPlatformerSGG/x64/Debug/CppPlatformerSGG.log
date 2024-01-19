@@ -1,5 +1,16 @@
-﻿  End.cpp
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\End.h(18,26): warning C4305: 'argument': truncation from 'double' to 'float'
-  (compiling source file 'End.cpp')
+﻿  Enemy.cpp
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Enemy.cpp(84,125): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Enemy.cpp(95,153): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Enemy.cpp(107,117): warning C4305: 'argument': truncation from 'double' to 'float'
+  GameState.cpp
+  Level.cpp
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\End.h(21,26): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Level.cpp')
   
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(215,26): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(215,21): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(240,25): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(241,25): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating Code...
+  LINK : D:\Σ????\2023-2024 ?ε?µε????\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe not found or not built by the last incremental link; performing full link
   CppPlatformerSGG.vcxproj -> D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe

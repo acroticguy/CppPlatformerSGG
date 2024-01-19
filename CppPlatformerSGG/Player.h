@@ -4,12 +4,13 @@
 #include "graphics.h"
 
 class Player: public GameObject, public Box {
+	const int animation_cycle = 11;
+
 	graphics::Brush m_brush_player;
 	const float v = 10.f;
 	const float terminal_v = 20.f;
 	const int hit_frame_sum = 14;//Van
-
-	int animation_cycle = 11;
+	
 	float direction = 1.f;
 
 	float gravity = 1.f;
@@ -25,7 +26,7 @@ public:
 	}
 
 	int enemies_killed = 0;//Van
-
+	int score = 0;
 	float initHealth = 200;//Van
 	float jump_v = 15.f;
 	bool is_hit = false;//Van

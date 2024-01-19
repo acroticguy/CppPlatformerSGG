@@ -5,10 +5,13 @@
 
 class Enemy : public GameObject, public Box {
 	graphics::Brush m_brush_enemy;
+	graphics::Brush m_brush_score_p;
 	float ve = 2.f;
-	float m_pos_y;
 	float exit_point;
 	int direction = 1;
+	const int value = 100;
+
+	float score_pos_offset = 0.f;
 
 	int animation_cycle = 7;
 
@@ -16,11 +19,6 @@ class Enemy : public GameObject, public Box {
 	const int kill_frame_sum = 10;//Van
 	
 public:
-	Enemy(float y) : m_pos_y(y) {
-		if (rand() % 2 == 0) {
-			direction *= -1;
-		}
-	}
 	Enemy(float x, float y, float w, float h, std::string name) : Box(x, y, w, h), GameObject(name) {
 		hitbox = new Box(x, y, w, h);
 		if (rand() % 2 == 0) {
@@ -31,7 +29,6 @@ public:
 
 	void setKilled(bool status);
 	bool getActive();
-	float getM_pos_y();
 
 	void update(float dt) override;
 	void init() override;

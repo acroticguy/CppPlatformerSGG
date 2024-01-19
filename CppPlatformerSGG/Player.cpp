@@ -107,20 +107,26 @@ void Player::draw()
 			graphics::drawRect(2 * w + m_pos_x, h / 2, direction * m_width, m_height, m_brush_player);
 
 			//Debug Frame:
-			graphics::drawRect(2 * w + m_pos_x, h / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			if (m_state->debug_mode) {
+				graphics::drawRect(2 * w + m_pos_x, h / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			}
 		}
 		else { // right
 			graphics::drawRect(-w + m_pos_x, h / 2, direction * m_width, m_height, m_brush_player);
 
 			//Debug Frame:
-			graphics::drawRect(-w + m_pos_x, h / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			if (m_state->debug_mode) {
+				graphics::drawRect(-w + m_pos_x, h / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			}
 		}
 	}
 	else {
 		graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, direction * m_width, m_height, m_brush_player);
 
 		//Debug Frame:
-		graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+		if (m_state->debug_mode) {
+			graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+		}
 	}
 }
 

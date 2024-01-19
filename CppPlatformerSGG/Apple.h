@@ -11,6 +11,8 @@ public:
 	void update(float dt) override;
 	void init() override;
 	void draw() override;
-	void activation() override;
+	void activation(float dt) override;
+	int getHeal() const override{ return health_given; };
+	int getScore() const override{ return value; };
 	std::string getName() const override{ return m_name; };
 };

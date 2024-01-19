@@ -15,7 +15,7 @@ void Orange::draw()
 	PowerUp::draw();
 }
 
-void Orange::activation()
+void Orange::activation(float dt)
 {
-	PowerUp::activation();
+	PowerUp::activation(dt);
 }

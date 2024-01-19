@@ -4,9 +4,9 @@
 void End::update(float dt)
 {
 
-	if (m_state->getPlayer()->intersect(*this)) {
-		is_active = true;
-	}
+	is_active = m_state->getPlayer()->intersect(*this) && m_state->getPlayer()->score >= score_required;
+
+	
 
 	float delta_t = dt / 1000.f;
 
@@ -46,24 +46,36 @@ void End::init()
 
 void End::draw()
 {
+	//YOU DON'T HAVE ENOUGH POINTS MESSAGE
+	if (m_state->getPlayer()->intersect(*this) && m_state->getPlayer()->score < score_required) {
+		graphics::drawText(2.5, 1, 0.5f,std::string("You don't have enough points to go through!"), m_brush_end);
+		graphics::drawText(2.5, 1.5, 0.5f, std::string("Score required: ") + std::to_string(score_required - m_state->getPlayer()->score), m_brush_end);
+	}
+
 	if (m_state->isOnEdge()) {
 		if (m_state->m_global_offset_x - w / 2 > 0) {
 			graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_end);
 
 			//Debug Frame:
-			graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			if (m_state->debug_mode) {
+				graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			}
 		}
 		else {
 			graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_end);
 
 			//Debug Frame:
-			graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			if (m_state->debug_mode) {
+				graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			}
 		}
 	}
 	else {
 		graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_end);
 
 		//Debug Frame:
-		graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+		if (m_state->debug_mode) {
+			graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+		}
 	}
 }

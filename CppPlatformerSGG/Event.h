@@ -9,7 +9,7 @@ public:
 	void update(float dt) override;
 	void init() override;
 	void draw() override;
-	virtual void activation() {}
+	virtual void activation(float dt) {}
 	Event(std::string & name) : GameObject(name){}
 	Event() {}
 	~Event();

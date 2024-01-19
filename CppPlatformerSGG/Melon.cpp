@@ -15,7 +15,7 @@ void Melon::draw()
 	PowerUp::draw();
 }
 
-void Melon::activation()
+void Melon::activation(float dt)
 {
-	PowerUp::activation();
+	PowerUp::activation(dt);
 }

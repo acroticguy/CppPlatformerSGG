@@ -61,8 +61,9 @@ void Player::update(float dt)
 	if (graphics::getKeyState(graphics::SCANCODE_A) || graphics::getKeyState(graphics::SCANCODE_LEFT)) { m_pos_x -= delta_t * v; direction = -1.f;}
 	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT)) { m_pos_x += delta_t * v; direction = 1.f;}
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP)) { m_pos_y -= delta_t * jump_v;}
-	if (graphics::getKeyState(graphics::SCANCODE_S) || graphics::getKeyState(graphics::SCANCODE_DOWN)) { m_pos_y = std::min(7.2f, m_pos_y + v * delta_t);
-	}
+	if (graphics::getKeyState(graphics::SCANCODE_S) || graphics::getKeyState(graphics::SCANCODE_DOWN)) { m_pos_y = std::min(7.2f, m_pos_y + v * delta_t); }
+
+	if (graphics::getKeyState(graphics::SCANCODE_G)) { m_state->debug_mode = !m_state->debug_mode; };
 
 	// We wanted to prevent the player from falling under the map, so we originally set a min height of 7. Then, since there was no collision with the ground, we couldn't eliminate the vertical velocity. That's why we used 7.01, to barely have the player stand in the ground.
 

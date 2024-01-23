@@ -80,6 +80,55 @@ void Level::update(float dt)
 				delete p_opp;
 			}
 		}
+
+		if (graphics::getKeyState(graphics::SCANCODE_SPACE) || graphics::getKeyState(graphics::SCANCODE_RETURN)) {
+			//Weapon* wpn = new Weapon(m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y, 0.2, 0.2);
+			Weapon* wpn = new Weapon();
+			wpn->init();
+			m_Weapons.push_back(wpn);
+			wpn->is_firing = true;
+
+		}
+
+		for (auto it = m_Weapons.begin(); it != m_Weapons.end();) {
+			auto p_wpn = *it;  // Get the pointer from the iterator.
+			if (p_wpn->isActive()) {
+				p_wpn->update(dt);
+				for (auto ix = m_Enemies.begin(); ix != m_Enemies.end();) {
+					auto p_opp = *ix;
+
+					if (p_wpn->hitbox->intersect(*p_opp->hitbox)) {
+						p_opp->setKilled(true);//Van
+					}
+
+
+					if (p_opp->isActive()) {
+						if (p_opp->is_killed) {
+							++ix;
+							continue;
+						}
+						//    if (p_wpn->hitbox->intersect(*p_opp->hitbox)) {
+							//    p_opp->setKilled(true);//Van
+						//}
+					}
+					else {
+						ix = m_Enemies.erase(ix);  // Erase returns the iterator to the next element.
+						delete p_opp;
+					}
+					if (ix != m_Enemies.end()) {//Van after search in web
+						++ix;
+					}
+				}
+			}
+
+			if (p_wpn->is_firing) {//moved down
+				++it;  // Move to the next element.
+			}
+			else {
+				it = m_Weapons.erase(it);  // Erase returns the iterator to the next element.
+				delete p_wpn;
+			}
+		}
 		
 	}
 	
@@ -184,6 +233,11 @@ void Level::draw()
 	for (auto p_opp : m_Enemies) {
 		if (p_opp) {
 			if (p_opp->isActive()) { p_opp->draw(); }
+		}
+	}
+	for (auto p_wpn : m_Weapons) {
+		if (p_wpn) {
+			if (p_wpn->isActive()) { p_wpn->draw(); }
 		}
 	}
 

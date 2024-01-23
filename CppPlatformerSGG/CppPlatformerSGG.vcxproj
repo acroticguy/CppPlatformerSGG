@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Apple.cpp" />
     <ClCompile Include="Bananas.cpp" />
+    <ClCompile Include="CharSelect.cpp" />
     <ClCompile Include="Cherries.cpp" />
     <ClCompile Include="End.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -155,11 +156,13 @@
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Strawberry.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
     <ClInclude Include="Bananas.h" />
     <ClInclude Include="box.h" />
+    <ClInclude Include="CharSelect.h" />
     <ClInclude Include="Cherries.h" />
     <ClInclude Include="End.h" />
     <ClInclude Include="Enemy.h" />
@@ -177,6 +180,7 @@
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Strawberry.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,6 +5,7 @@
 #include "PowerUp.h"
 #include "graphics.h"
 #include "Enemy.h"//Van
+#include "Weapon.h"
 #include <list>
 
 class Level : public GameObject {
@@ -23,6 +24,7 @@ class Level : public GameObject {
 	std::list<PowerUp*> m_power_ups;
 	std::list<GameObject*> m_dynamic_objects;
 	std::list<Enemy*> m_Enemies;//Van
+	std::list<Weapon*> m_Weapons;
 
 public:
 	void update(float dt) override;

@@ -40,4 +40,5 @@ public:
 	void init() override;
 	void draw() override;
 	void setVerticalV(float new_v);
+	float getDirection() { return direction; };//Van
 };

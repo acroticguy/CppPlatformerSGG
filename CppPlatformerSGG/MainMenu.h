@@ -1,11 +1,18 @@
 #pragma once
 #include "graphics.h"
+#include "GameState.h"
 #include "Menu.h"
 
 class MainMenu: public Menu {
-	graphics::Brush m_brush_menu;
-
+private:
+	static const int buttons = 3;
 	static MainMenu* instance;
+	
+	std::string menu_selection[buttons] = { "PLAY", "SELECT CHARACTER", "QUIT" };
+
+	graphics::Brush m_brush_sel;
+	graphics::Brush m_brush_arrow;
+
 public:
 
 	MainMenu();

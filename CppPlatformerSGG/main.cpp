@@ -20,7 +20,7 @@ bool init() {
 
 int main()
 {
-	graphics::createWindow(1200, 600, "Hello World");
+	graphics::createWindow(1200, 600, "CPP Platformer");
 
 	init();
 

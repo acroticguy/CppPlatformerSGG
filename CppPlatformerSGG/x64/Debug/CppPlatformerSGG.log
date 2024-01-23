@@ -1,5 +1,3 @@
-﻿  End.cpp
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\End.h(21,26): warning C4305: 'argument': truncation from 'double' to 'float'
-  (compiling source file 'End.cpp')
-  
+﻿  CharSelect.cpp
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\CharSelect.cpp(84,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   CppPlatformerSGG.vcxproj -> D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe

@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "Level.h"
 #include "Player.h"
+#include "MainMenu.h"
 #include "graphics.h"
 
 GameState* GameState::m_unique_instance = nullptr;
@@ -9,11 +10,20 @@ bool GameState::init()
 {
 	graphics::setFont(this->getAssetPath("orange juice 2.0.ttf"));
 
-	m_level = new Level("Level0");
-	m_level->init();
+	if (in_menu) {
+		m_menu = MainMenu::getInstance();
+		m_menu->init();
+	}
+	else if (in_char_sel) {
+		char_sel->init();
+	}
+	else {
+		m_level = new Level("Level0");
+		m_level->init();
 
-	m_player = new Player("Mask Dude");
-	m_player->init();
+		m_player = new Player(p_name);
+		m_player->init();
+	}
 
 	graphics::preloadBitmaps(m_asset_path); //Load all PNGs in the memory
 	return true;
@@ -21,26 +31,61 @@ bool GameState::init()
 
 void GameState::draw()
 {
-	if (!m_level) {
-		return;
+	if (in_menu) {
+		if (!m_menu) { 
+			m_menu = MainMenu::getInstance();
+			m_menu->init();
+		}
+		m_menu->draw();
 	}
-	if (!in_menu) { m_level->draw(); }
+	else if (in_char_sel) {
+		if (!char_sel) {
+			char_sel = CharSelect::getInstance();
+			char_sel->init();
+		}
+		char_sel->draw();
+	}
+	else { 
+		if (!m_level) { 
+			m_level = new Level("Level0");
+			m_level->init();
+
+			m_player = new Player(p_name);
+			m_player->init();
+		}
+		m_level->draw();
+	}
 }
 
 void GameState::update(float dt)
 {
-	if (!m_level || dt > 500) {
+	if (dt > 500) {
 		return;
 	}
-	graphics::MouseState mouse;
-	graphics::getMouseState(mouse);
-	if (mouse.button_left_released)
-	{
-		graphics::playSound("assets\\hit1.wav", 1.0f, false);
-	}
 	if (in_menu) {
+		if (!m_menu) {
+			m_menu = MainMenu::getInstance();
+			m_menu->init();
+		}
+		m_menu->update(dt);
+	}
+	else if (in_char_sel) {
+		if (!char_sel) {
+			char_sel = CharSelect::getInstance();
+			char_sel->init();
+		}
+		char_sel->update(dt);
+	}
+	else {
+		if (!m_level) {
+			m_level = new Level("Level0");
+			m_level->init();
 
-	} else { m_level->update(dt); }
+			m_player = new Player(p_name);
+			m_player->init();
+		}
+		m_level->update(dt);
+	}
 }
 
 GameState * GameState::getInstance()

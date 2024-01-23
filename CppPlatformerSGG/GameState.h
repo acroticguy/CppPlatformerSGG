@@ -2,6 +2,9 @@
 #include <string>
 #include <graphics.h>
 #include <math.h>
+
+#include "MainMenu.h"
+#include "CharSelect.h"
 class GameState {
 
 private:
@@ -17,6 +20,8 @@ private:
 
 	class Player* m_player = 0;
 	class Level* m_level = 0;
+	class MainMenu* m_menu = 0;
+	class CharSelect* char_sel = 0;
 
 	GameState();
 
@@ -30,8 +35,11 @@ public:
 	void draw();
 	void update(float dt);
 
-	bool in_menu = false;
+	bool in_menu = true;
+	bool in_char_sel = false;
 	bool debug_mode = false;
+
+	std::string p_name = "Mask Dude";
 
 
 	~GameState();

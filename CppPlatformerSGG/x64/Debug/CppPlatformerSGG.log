@@ -1,3 +1,4 @@
-﻿  CharSelect.cpp
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\CharSelect.cpp(84,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  MainMenu.cpp
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\MainMenu.cpp(90,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\MainMenu.cpp(95,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   CppPlatformerSGG.vcxproj -> D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe

@@ -6,7 +6,7 @@
 class Enemy : public GameObject, public Box {
 	graphics::Brush m_brush_enemy;
 	graphics::Brush m_brush_score_p;
-	float ve = 2.f;
+	float ve = 2.f * m_state->difficulty_multiplier;
 	float exit_point;
 	int direction = 1;
 	const int value = 100;

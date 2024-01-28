@@ -47,6 +47,7 @@ void MainMenu::update(float dt)
 			switch (curr_selected) {
 			case 0:
 				//PLAY
+				m_state->init();
 				m_state->in_menu = false;
 				break;
 			case 1:
@@ -55,6 +56,10 @@ void MainMenu::update(float dt)
 				m_state->in_menu = false;
 				break;
 			case 2:
+				m_state->in_set_diff = true;
+				m_state->in_menu = false;
+				break;
+			case 3:
 				//EXIT
 				exit(0);
 			}

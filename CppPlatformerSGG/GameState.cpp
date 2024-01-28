@@ -17,6 +17,9 @@ bool GameState::init()
 	else if (in_char_sel) {
 		char_sel->init();
 	}
+	else if (in_set_diff) {
+		set_diff->init();
+	}
 	else {
 		m_level = new Level("Level0");
 		m_level->init();
@@ -44,6 +47,13 @@ void GameState::draw()
 			char_sel->init();
 		}
 		char_sel->draw();
+	}
+	else if (in_set_diff) {
+		if (!set_diff) {
+			set_diff = SetDiff::getInstance();
+			set_diff->init();
+		}
+		set_diff->draw();
 	}
 	else { 
 		if (!m_level) { 
@@ -75,6 +85,13 @@ void GameState::update(float dt)
 			char_sel->init();
 		}
 		char_sel->update(dt);
+	}
+	else if (in_set_diff) {
+		if (!set_diff) {
+			set_diff = SetDiff::getInstance();
+			set_diff->init();
+		}
+		set_diff->update(dt);
 	}
 	else {
 		if (!m_level) {

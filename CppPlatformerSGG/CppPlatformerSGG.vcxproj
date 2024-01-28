@@ -154,6 +154,7 @@
     <ClCompile Include="Pineapple.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="SetDiff.cpp" />
     <ClCompile Include="Strawberry.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Pineapple.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="SetDiff.h" />
     <ClInclude Include="Strawberry.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Weapon.h" />

@@ -18,10 +18,10 @@
 void Level::update(float dt)
 {
 	
-	float delta_t = dt / 10.f;
+	float delta_t = dt / 1000.f;
 
 	/*Vangelis - Add countdown for player's health*/
-	m_state->getPlayer()->getHealth() <= 0 ? m_state->getPlayer()->updateHealth(0) : m_state->getPlayer()->updateHealth(-delta_t / 100);//Van
+	m_state->getPlayer()->getHealth() <= 0 ? m_state->getPlayer()->updateHealth(0) : m_state->getPlayer()->updateHealth(-delta_t);//Van
 	/*Vangelis*/
 
 	if (m_state->getPlayer()->isActive()) {
@@ -37,14 +37,18 @@ void Level::update(float dt)
 			}
 		}
 
-		time += delta_t;
+		time += delta_t * m_state->difficulty_multiplier;
 		int current_sec = static_cast<int>(floor(time));
-		if (current_sec % 500 == 499) {
+
+		if (current_sec % 4 == 3 && !enemy_spawned) {
 			//Enemy* opp = new Enemy(m_state->getPlayer()->m_pos_y);
 			Enemy* opp = new Enemy(1,m_state->getPlayer()->m_pos_y,1.5,1,"Bat");//Van
 			opp->init();
 			m_Enemies.push_back(opp);
+			enemy_spawned = true;
 		}
+
+		if (current_sec % 4 != 3) { enemy_spawned = false; }
 		
 		for (auto it = m_Enemies.begin(); it != m_Enemies.end();) {
 			auto p_opp = *it;  // Get the pointer from the iterator.			
@@ -56,9 +60,9 @@ void Level::update(float dt)
 				}
 				if (m_state->getPlayer()->hitbox->intersectDown(*p_opp->hitbox)) {
 					float collision_offset = m_state->getPlayer()->hitbox->intersectDown(*p_opp->hitbox);
-					if (collision_offset < 0.f /*&& collision_offset >= -0.05*/) {
+					if (collision_offset < 0.f) {
 						m_state->getPlayer()->setVerticalV(0.f);
-						m_state->getPlayer()->m_pos_y -= (delta_t / 100.f) * m_state->getPlayer()->jump_v * 5;
+						m_state->getPlayer()->m_pos_y -= delta_t * m_state->getPlayer()->jump_v * 5;
 						p_opp->setKilled(true);//Van
 					}
 				}
@@ -66,12 +70,8 @@ void Level::update(float dt)
 				if (m_state->getPlayer()->hitbox->intersectSideways(*p_opp->hitbox)) {
 					m_state->getPlayer()->is_hit = true;
 
-					if (m_state->getPlayer()->getHealth() >= 0.5) {//Van
-						m_state->getPlayer()->updateHealth(-0.5);//Van
-					}
-					else {//Van
-						m_state->getPlayer()->setHealth(0);//Van
-					}
+					// Don't try to give negative HP. If HP left is less than 0.5, just go to 0.
+					m_state->getPlayer()->setHealth(std::max(0.f, m_state->getPlayer()->getHealth() - 0.5f));
 				}
 				++it;  // Move to the next element.
 			}

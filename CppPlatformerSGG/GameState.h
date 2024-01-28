@@ -5,6 +5,7 @@
 
 #include "MainMenu.h"
 #include "CharSelect.h"
+#include "SetDiff.h"
 class GameState {
 
 private:
@@ -22,6 +23,7 @@ private:
 	class Level* m_level = 0;
 	class MainMenu* m_menu = 0;
 	class CharSelect* char_sel = 0;
+	class SetDiff* set_diff = 0;
 
 	GameState();
 
@@ -37,7 +39,10 @@ public:
 
 	bool in_menu = true;
 	bool in_char_sel = false;
+	bool in_set_diff = false;
 	bool debug_mode = false;
+
+	float difficulty_multiplier = 1.f;
 
 	std::string p_name = "Mask Dude";
 

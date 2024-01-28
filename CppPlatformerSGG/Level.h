@@ -18,6 +18,8 @@ class Level : public GameObject {
 	float offset_y;
 
 	float time;
+	bool enemy_spawned = false;
+
 	std::string soundtrack = "Undertale - Bonetrousle.mp3";
 
 	std::vector<GameObject*> m_static_objects;

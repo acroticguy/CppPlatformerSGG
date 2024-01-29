@@ -47,8 +47,8 @@ void MainMenu::update(float dt)
 			switch (curr_selected) {
 			case 0:
 				//PLAY
-				m_state->init();
 				m_state->in_menu = false;
+				m_state->init();
 				break;
 			case 1:
 				//CHAR SELECT

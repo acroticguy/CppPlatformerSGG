@@ -20,6 +20,9 @@ bool GameState::init()
 	else if (in_set_diff) {
 		set_diff->init();
 	}
+	else if (in_game_over) {
+		game_over->init();
+	}
 	else {
 		m_level = new Level("Level0");
 		m_level->init();
@@ -54,6 +57,13 @@ void GameState::draw()
 			set_diff->init();
 		}
 		set_diff->draw();
+	}
+	else if (in_game_over) {
+		if (!game_over) {
+			game_over = GameOver::getInstance();
+			game_over->init();
+		}
+		game_over->draw();
 	}
 	else { 
 		if (!m_level) { 
@@ -92,6 +102,13 @@ void GameState::update(float dt)
 			set_diff->init();
 		}
 		set_diff->update(dt);
+	}
+	else if (in_game_over) {
+		if (!game_over) {
+			game_over = GameOver::getInstance();
+			game_over->init();
+		}
+		game_over->update(dt);
 	}
 	else {
 		if (!m_level) {

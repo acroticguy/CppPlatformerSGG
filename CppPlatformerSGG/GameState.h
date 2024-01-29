@@ -6,6 +6,7 @@
 #include "MainMenu.h"
 #include "CharSelect.h"
 #include "SetDiff.h"
+#include "GameOver.h"
 class GameState {
 
 private:
@@ -24,6 +25,7 @@ private:
 	class MainMenu* m_menu = 0;
 	class CharSelect* char_sel = 0;
 	class SetDiff* set_diff = 0;
+	class GameOver* game_over = 0;
 
 	GameState();
 
@@ -40,6 +42,8 @@ public:
 	bool in_menu = true;
 	bool in_char_sel = false;
 	bool in_set_diff = false;
+	bool in_game_over = false;
+
 	bool debug_mode = false;
 
 	float difficulty_multiplier = 1.f;

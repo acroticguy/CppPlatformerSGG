@@ -304,7 +304,7 @@ void Level::draw()
 
 		graphics::playSound("assets\\game-over.wav", 0.2f, false);
 		m_state->getPlayer()->setActive(false);
-		m_state->in_menu = true;
+		m_state->in_game_over = true;
 	}
 
 	/*Vangelis - Add Game Over*/

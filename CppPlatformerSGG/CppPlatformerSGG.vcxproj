@@ -139,6 +139,7 @@
     <ClCompile Include="Bananas.cpp" />
     <ClCompile Include="CharSelect.cpp" />
     <ClCompile Include="Cherries.cpp" />
+    <ClCompile Include="Congratulations.cpp" />
     <ClCompile Include="End.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Event.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="box.h" />
     <ClInclude Include="CharSelect.h" />
     <ClInclude Include="Cherries.h" />
+    <ClInclude Include="Congratulations.h" />
     <ClInclude Include="End.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Event.h" />

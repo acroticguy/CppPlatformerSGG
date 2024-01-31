@@ -3,6 +3,7 @@
 #include "GameState.h"
 #include "Menu.h"
 
+
 class GameOver : public Menu {
 private:
 	static const int buttons = 2;

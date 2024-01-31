@@ -24,7 +24,7 @@ void Enemy::update(float dt)
 	int current_frame;
 	if (is_killed) {
 		if (kill_frame == 0.f) { 
-			graphics::playSound(m_state->getAssetPath("Enemy_hit.mp3"), 1.f, false); 
+			graphics::playSound(m_state->getAssetPath("Enemy\\Enemy_hit.mp3"), 1.f, false); 
 			m_brush_score_p.fill_opacity = 0.2f;
 			m_state->getPlayer()->score += value;
 		}

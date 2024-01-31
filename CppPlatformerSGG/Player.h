@@ -30,6 +30,7 @@ public:
 	float initHealth = 200;//Van
 	float jump_v = 15.f;
 	bool is_hit = false;//Van
+	bool is_dead = false;
 	float getHealth();//Van
 	void setHealth(float h);//Van
 	void updateHealth(float h);//Van

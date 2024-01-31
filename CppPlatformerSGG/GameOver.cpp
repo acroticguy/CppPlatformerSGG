@@ -1,4 +1,5 @@
 #include "GameOver.h"
+#include "Player.h" // We print player's score on the game over page.
 
 GameOver* GameOver::instance = nullptr;
 
@@ -64,7 +65,7 @@ void GameOver::init()
 {
 	curr_cd = 0;
 	curr_selected = ((sel % buttons) + buttons) % buttons;
-	title = "SELECT DIFFICULTY";
+	title = "GAME OVER. ";
 
 	m_brush_menu.outline_opacity = 0.f;
 	m_brush_menu.texture = m_state->getAssetPath("Menu\\menu_bg.png");
@@ -79,15 +80,11 @@ void GameOver::draw()
 	graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_menu); // Background
 	graphics::drawText(1, 1, 1, title, m_brush_menu); // Title
 
+	graphics::drawText(8, 3, 1, std::string("SCORE: " + std::to_string(m_state->getPlayer()->score)), m_brush_menu);
+
 	for (int i = 0; i < buttons; i++) {
 		graphics::drawText(1, i + 2.5, 0.5, menu_selection[i], m_brush_sel); // Draw all the buttons, with their respective brush
 	}
 
-	//graphics::drawText(5, 1, 0.5, std::to_string(curr_selected), m_brush_sel);
-
 	graphics::drawRect(0.6f, curr_selected + 2.3, -0.5, 0.25, m_brush_arrow);
-
-	/*graphics::drawText(1, 2.5, 0.5, std::string("PLAY"), m_brush_menu);
-	graphics::drawText(1, 3.5, 0.5, std::string("SELECT CHARACTER"), m_brush_menu);
-	graphics::drawText(1, 4.5, 0.5, std::string("QUIT"), m_brush_menu);*/
 }

@@ -90,11 +90,11 @@ void MainMenu::draw()
 		graphics::drawText(1, i + 2.5, 0.5, menu_selection[i], m_brush_sel); // Draw all the buttons, with their respective brush
 	}
 
-	//graphics::drawText(5, 1, 0.5, std::to_string(curr_selected), m_brush_sel);
-
 	graphics::drawRect(0.6f, curr_selected + 2.3, -0.5, 0.25, m_brush_arrow);
 
-	/*graphics::drawText(1, 2.5, 0.5, std::string("PLAY"), m_brush_menu);
-	graphics::drawText(1, 3.5, 0.5, std::string("SELECT CHARACTER"), m_brush_menu);
-	graphics::drawText(1, 4.5, 0.5, std::string("QUIT"), m_brush_menu);*/
+	std::string control_msgs[4] = { "CONTROLS:", "WASD/ARROW KEYS TO MOVE", "ENTER/SPACE TO SHOOT", "PRO TIP: DON'T DIE!" };
+
+	for (int i = 0; i < 4; i++) {
+		graphics::drawText(8, i/2.f + 2.5, 0.5, control_msgs[i], m_brush_sel);
+	}
 }

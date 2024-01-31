@@ -5,7 +5,7 @@
 
 class End: public GameObject, public Box{
 private:
-	const int score_required = 2500;
+	const int score_required = 2500 * m_state->difficulty_multiplier;
 	const int transition_cycle = 26;
 	const int wave_cycle = 10;
 

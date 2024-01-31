@@ -24,8 +24,23 @@ void Level::update(float dt)
 	m_state->getPlayer()->getHealth() <= 0 ? m_state->getPlayer()->updateHealth(0) : m_state->getPlayer()->updateHealth(-delta_t);//Van
 	/*Vangelis*/
 
+	if (m_state->getPlayer()->is_dead) {
+		if (secs_dead == 0.f) {
+			m_state->getPlayer()->setActive(false);
+			graphics::stopMusic(500);
+			graphics::playSound("assets\\game-over.wav", 0.2f, false);
+		}
+		game_over_pos_offset += delta_t;
+		secs_dead += delta_t;
+
+		if (secs_dead > 3.f) {
+			m_state->in_game_over = true;
+		}
+	}
+
 	if (m_state->getPlayer()->isActive()) {
 		m_state->getPlayer()->update(dt);
+
 		for (auto& p_gob : m_static_objects) {
 			p_gob->update(dt);
 		}
@@ -137,6 +152,11 @@ void Level::update(float dt)
 
 void Level::init()
 {
+	m_static_objects.clear();
+	m_power_ups.clear();
+	m_dynamic_objects.clear();
+	m_Enemies.clear();
+	m_Weapons.clear();
 	//m_state->getPlayer()->updateHealth(m_state->getPlayer()->initHealth);//Van
 	time = 0;
 	m_brush_background.outline_opacity = 0.f;
@@ -294,20 +314,16 @@ void Level::draw()
 	graphics::drawText(14, 0.7, 0.5, std::to_string(static_cast<int>((m_state->getPlayer()->getHealth() / m_state->getPlayer()->initHealth)*100)) + std::string(" %"), br);
 
 	/*Vangelis - Add Game Over*/
-	if (m_state->getPlayer()->getHealth() <= 0) {
+	
+
+	if (m_state->getPlayer()->is_dead) { 
 		graphics::Brush br;
-		graphics::stopMusic(500);
 		br.texture = m_state->getAssetPath("game_over.png");
 		br.fill_opacity = 1.f;
 		br.outline_opacity = 0.f;
-		graphics::drawRect(m_state->getCanvasWidth() / 2, m_state->getCanvasHeight() / 2, m_state->getCanvasWidth() / 2, 1, br);
 
-		graphics::playSound("assets\\game-over.wav", 0.2f, false);
-		m_state->getPlayer()->setActive(false);
-		m_state->in_game_over = true;
+		graphics::drawRect(m_state->getCanvasWidth() / 2, std::min(m_state->getCanvasHeight() / 4, game_over_pos_offset), m_state->getCanvasWidth() / 2, 1, br);
 	}
-
-	/*Vangelis - Add Game Over*/
 }
 
 Level::Level(const std::string& name) {}
@@ -319,9 +335,24 @@ Level::~Level()
 			delete p_gob;
 		}
 	}
+	for (auto p_pwr : m_power_ups) {
+		if (p_pwr) {
+			delete p_pwr;
+		}
+	}
 	for (auto p_gob : m_dynamic_objects) {
 		if (p_gob) {
 			delete p_gob;
+		}
+	}
+	for (auto p_opp : m_Enemies) {
+		if (p_opp) {
+			delete p_opp;
+		}
+	}
+	for (auto p_wpn : m_Weapons) {
+		if (p_wpn) {
+			delete p_wpn;
 		}
 	}
 }

@@ -1,41 +1,51 @@
 #include "End.h"
 #include "Player.h"
+#include "graphics.h"
+#include "GameState.h"
 
 void End::update(float dt)
 {
-
-	is_active = m_state->getPlayer()->intersect(*this) && m_state->getPlayer()->score >= score_required;
-
-	
+	if (m_state->getPlayer()->intersect(*this) && m_state->getPlayer()->score >= score_required) { is_active = true; }
 
 	float delta_t = dt / 1000.f;
 
 	frame_count += animation_cycle * delta_t;
-	//int current_frame = (static_cast<int>(floor(frame_count)) % animation_cycle) + 1;
-	//m_brush_player.texture = m_state->getAssetPath(m_name + "\\output_") + std::to_string(current_frame) + ".png";
 
 	int current_frame;
 	if (is_active && !animation_over) {
-		active_count += transition_cycle * dt / 1000.f;
+		//We just got to the flag
+		if (active_count == 0.f) { 
+			graphics::stopMusic(1500);
+			graphics::playSound(m_state->getAssetPath("win_2.wav"), 1.f, false);
+		}
+		active_count += transition_cycle * delta_t;
 		current_frame = (static_cast<int>(floor(active_count)) % transition_cycle) + 1;
 		m_brush_end.texture = m_state->getAssetPath("End\\Checkpoint\\output_") + std::to_string(current_frame) + ".png";
 		if (current_frame >= 26) {
 			//Checkpoint_Active
 			animation_over = true;
+			active_count = 0;
 		}
 	}
 
+	//Flag wave after being raised
 	if (animation_over) {
-		active_count += wave_cycle * dt / 1000.f;
+		active_count += wave_cycle * delta_t;
 		current_frame = (static_cast<int>(floor(active_count)) % wave_cycle) + 1;
 		m_brush_end.texture = m_state->getAssetPath("End\\Checkpoint_After\\output_") + std::to_string(current_frame) + ".png";
+		// 2 Seconds after flag waves, bring in congratulations
+		if (active_count / wave_cycle > 2) {
+			//Congratulations needs to be initialized on every run for the sound to play.
+			m_state->initCong();
+			m_state->in_congratulations = true;
+		}
 	}
-	
 }
 
 void End::init()
 {
-	frame_count = 0;
+	frame_count = 0.f;
+	active_count = 0.f;
 	m_brush_end.fill_opacity = 1.f;
 	m_brush_end.outline_opacity = 0.f;
 	m_brush_end.texture = m_state->getAssetPath("End\\Idle.png");

@@ -19,6 +19,8 @@ class Level : public GameObject {
 
 	float time;
 	bool enemy_spawned = false;
+	float game_over_pos_offset = 0.f;
+	float secs_dead = 0.f;
 
 	std::string soundtrack = "Undertale - Bonetrousle.mp3";
 

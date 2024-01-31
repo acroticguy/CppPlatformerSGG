@@ -36,12 +36,14 @@ void Player::update(float dt)
 	float delta_t = dt / 1000.f;
 
 	frame_count += animation_cycle * delta_t;
-	//int current_frame = (static_cast<int>(floor(frame_count)) % animation_cycle) + 1;
-	//m_brush_player.texture = m_state->getAssetPath(m_name + "\\output_") + std::to_string(current_frame) + ".png";
+
+	if (health <= 0) { 
+		is_dead = true;
+	}
 
 	int current_frame;
 	if (is_hit) {
-		if (hit_frame == 0.f) { graphics::playSound(m_state->getAssetPath("Hero_hit.mp3"), 1.f, false); }
+		if (hit_frame == 0.f) { graphics::playSound(m_state->getAssetPath("Players\\Hero_hit.mp3"), 1.f, false); }
 		hit_frame += hit_frame_sum * dt / 1000.f;
 		current_frame = (static_cast<int>(floor(hit_frame)) % hit_frame_sum) + 1;
 		m_brush_player.texture = m_state->getAssetPath("Players\\" + m_name + "\\Hit\\output_") + std::to_string(current_frame) + ".png";
@@ -82,6 +84,8 @@ void Player::update(float dt)
 
 void Player::init()
 {
+	is_dead = false;
+
 	m_pos_x = -25.f;
 	m_pos_y = 0.f;
 	hitbox->m_pos_x = m_pos_x;
@@ -103,6 +107,7 @@ void Player::draw()
 	float w = m_state->getCanvasWidth();
 	float h = m_state->getCanvasHeight();
 	float temp = m_state->m_global_offset_x - w / 2;
+
 	if (m_state->isOnEdge()) {// is edge
 		if (temp > 0) {// left
 			graphics::drawRect(2 * w + m_pos_x, h / 2, direction * m_width, m_height, m_brush_player);

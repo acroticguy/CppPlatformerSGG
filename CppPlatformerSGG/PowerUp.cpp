@@ -68,7 +68,7 @@ void PowerUp::activation(float dt) {
 	float delta_t = dt / 1000.f;
 	if (is_collected) {
 		if (collected_frame == 0.f) {
-			graphics::playSound(m_state->getAssetPath("pop.mp3"), 1.f, false);
+			graphics::playSound(m_state->getAssetPath("Fruits\\pop.mp3"), 1.f, false);
 			float new_health = std::min(200.f, m_state->getPlayer()->getHealth() + this->getHeal());
 			m_state->getPlayer()->setHealth(new_health);
 

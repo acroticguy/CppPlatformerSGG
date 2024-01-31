@@ -7,6 +7,7 @@
 #include "CharSelect.h"
 #include "SetDiff.h"
 #include "GameOver.h"
+#include "Congratulations.h"
 class GameState {
 
 private:
@@ -26,6 +27,7 @@ private:
 	class CharSelect* char_sel = 0;
 	class SetDiff* set_diff = 0;
 	class GameOver* game_over = 0;
+	class Congratulations* congratulations = 0;
 
 	GameState();
 
@@ -43,6 +45,7 @@ public:
 	bool in_char_sel = false;
 	bool in_set_diff = false;
 	bool in_game_over = false;
+	bool in_congratulations = false;
 
 	bool debug_mode = false;
 
@@ -55,6 +58,7 @@ public:
 	static GameState* getInstance();
 	std::string getAssetPath(std::string image);
 	class Player* getPlayer() { return GameState::m_player; }
+	void initCong();
 
 	float getCanvasWidth();
 	float getCanvasHeight();

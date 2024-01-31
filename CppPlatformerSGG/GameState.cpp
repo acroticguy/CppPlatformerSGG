@@ -23,6 +23,9 @@ bool GameState::init()
 	else if (in_game_over) {
 		game_over->init();
 	}
+	else if (in_congratulations) {
+		congratulations->init();
+	}
 	else {
 		m_level = new Level("Level0");
 		m_level->init();
@@ -64,6 +67,13 @@ void GameState::draw()
 			game_over->init();
 		}
 		game_over->draw();
+	}
+	else if (in_congratulations) {
+		if (!congratulations) {
+			congratulations = Congratulations::getInstance();
+			congratulations->init();
+		}
+		congratulations->draw();
 	}
 	else { 
 		if (!m_level) { 
@@ -110,6 +120,13 @@ void GameState::update(float dt)
 		}
 		game_over->update(dt);
 	}
+	else if (in_congratulations) {
+		if (!congratulations) {
+			congratulations = Congratulations::getInstance();
+			congratulations->init();
+		}
+		congratulations->update(dt);
+	}
 	else {
 		if (!m_level) {
 			m_level = new Level("Level0");
@@ -133,6 +150,11 @@ GameState * GameState::getInstance()
 std::string GameState::getAssetPath(std::string str)
 {
 	return m_asset_path + str;
+}
+
+void GameState::initCong()
+{
+	Congratulations::getInstance()->init();
 }
 
 float GameState::getCanvasWidth()

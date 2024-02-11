@@ -113,7 +113,7 @@ void Weapon::activation(float dt)
 	float delta_t = dt / 100.f;
 	if (is_firing) {
 		if (fire_frame == 0.f) {
-			graphics::playSound(m_state->getAssetPath("fire.wav"), 1.f, false);
+			graphics::playSound(m_state->getAssetPath("Weapon\\fire.wav"), 1.f, false);
 		}
 
 		fire_frame += 2.0 * fire_frame_sum * delta_t;

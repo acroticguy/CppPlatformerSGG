@@ -1,59 +1,4 @@
-﻿  GameState.cpp
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Weapon.h(25,31): warning C4305: 'argument': truncation from 'double' to 'float'
-  (compiling source file 'GameState.cpp')
-  
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Weapon.h(25,26): warning C4305: 'argument': truncation from 'double' to 'float'
-  (compiling source file 'GameState.cpp')
-  
-  Level.cpp
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Weapon.h(25,31): warning C4305: 'argument': truncation from 'double' to 'float'
-  (compiling source file 'Level.cpp')
-  
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Weapon.h(25,26): warning C4305: 'argument': truncation from 'double' to 'float'
-  (compiling source file 'Level.cpp')
-  
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\End.h(8,34): warning C4244: 'initializing': conversion from 'float' to 'const int', possible loss of data
-  (compiling source file 'Level.cpp')
-  
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\End.h(21,26): warning C4305: 'argument': truncation from 'double' to 'float'
-  (compiling source file 'Level.cpp')
-  
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(172,55): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(172,18): warning C4244: 'initializing': conversion from 'float' to 'const int', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(174,54): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(174,18): warning C4244: 'initializing': conversion from 'float' to 'const int', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(175,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(183,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(183,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(183,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(183,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(191,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(191,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(195,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(195,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(199,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(199,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(203,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(203,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(207,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(207,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(211,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(211,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(215,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(215,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(219,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(219,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(231,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(231,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(231,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(231,22): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(233,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(233,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(350,26): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(350,21): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(375,25): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Level.cpp(376,25): warning C4305: 'argument': truncation from 'double' to 'float'
-  Weapon.cpp
+﻿  Weapon.cpp
 D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Weapon.h(25,31): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Weapon.cpp')
   
@@ -64,5 +9,4 @@ D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatfor
 D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Weapon.cpp(31,13): warning C4305: '=': truncation from 'double' to 'float'
 D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Weapon.cpp(33,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\CppPlatformerSGG\Weapon.cpp(119,38): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
   CppPlatformerSGG.vcxproj -> D:\Σχολή\2023-2024 Χειμερινό\C++\repos\CppPlatformerSGG\bin\CppPlatformerSGGd.exe

@@ -28,36 +28,77 @@ void PowerUp::draw()
 {
 	if (m_state->isOnEdge()) {
 		if (m_state->m_global_offset_x - w / 2 > 0) {
-			graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_power);
+			if (m_state->m_global_offset_y - h / 2 > 0) {
+				graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->getBackgroundHeight()/2, m_width, m_height, m_brush_power);
 
-			//Score Popup
-			graphics::drawText(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y - score_pos_offset + m_state->m_global_offset_y, 0.4, std::to_string(this->getScore()), m_brush_score_p);
+				//Score Popup
+				graphics::drawText(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y - score_pos_offset + m_state->getBackgroundHeight() / 2, 0.4, std::to_string(this->getScore()), m_brush_score_p);
 
-			//HITBOX
-			if (m_state->debug_mode) {
-				graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+				//HITBOX
+				if (m_state->debug_mode) {
+					graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->getBackgroundHeight() / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+				}
+			} else {
+				graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_power);
+
+				//Score Popup
+				graphics::drawText(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y - score_pos_offset + m_state->m_global_offset_y, 0.4, std::to_string(this->getScore()), m_brush_score_p);
+
+				//HITBOX
+				if (m_state->debug_mode) {
+					graphics::drawRect(m_pos_x + m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+				}
 			}
+			
 		} else {
-			graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_power);
+			if (m_state->m_global_offset_y - h / 2 > 0) {
+				graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->getBackgroundHeight() / 2, m_width, m_height, m_brush_power);
 
-			//Score Popup
-			graphics::drawText(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y - score_pos_offset + m_state->m_global_offset_y, 0.4, std::to_string(this->getScore()), m_brush_score_p);
+				//Score Popup
+				graphics::drawText(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->getBackgroundHeight() / 2 - score_pos_offset, 0.4, std::to_string(this->getScore()), m_brush_score_p);
 
-			//HITBOX
-			if (m_state->debug_mode) {
-				graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+				//HITBOX
+				if (m_state->debug_mode) {
+					graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->getBackgroundHeight() / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+				}
 			}
+			else {
+				graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_power);
+
+				//Score Popup
+				graphics::drawText(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y - score_pos_offset + m_state->m_global_offset_y, 0.4, std::to_string(this->getScore()), m_brush_score_p);
+
+				//HITBOX
+				if (m_state->debug_mode) {
+					graphics::drawRect(m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+				}
+			}
+			
 		}
 	} else {
-		graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_power);
+		if (m_state->m_global_offset_y - h / 2 > 0) {
+			graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->getBackgroundHeight() / 2, m_width, m_height, m_brush_power);
 
-		//Score Popup
-		graphics::drawText(m_pos_x + m_state->m_global_offset_x, m_pos_y - score_pos_offset + m_state->m_global_offset_y, 0.4, std::to_string(this->getScore()), m_brush_score_p);
+			//Score Popup
+			graphics::drawText(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->getBackgroundHeight() / 2 - score_pos_offset, 0.4, std::to_string(this->getScore()), m_brush_score_p);
 
-		//HITBOX
-		if (m_state->debug_mode) {
-			graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			//HITBOX
+			if (m_state->debug_mode) {
+				graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->getBackgroundHeight() / 2, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			}
 		}
+		else {
+			graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->m_global_offset_y, m_width, m_height, m_brush_power);
+
+			//Score Popup
+			graphics::drawText(m_pos_x + m_state->m_global_offset_x, m_pos_y - score_pos_offset + m_state->m_global_offset_y, 0.4, std::to_string(this->getScore()), m_brush_score_p);
+
+			//HITBOX
+			if (m_state->debug_mode) {
+				graphics::drawRect(m_pos_x + m_state->m_global_offset_x, m_pos_y + m_state->m_global_offset_y, hitbox->m_width, hitbox->m_height, m_brush_hbox);
+			}
+		}
+		
 	}
 
 }

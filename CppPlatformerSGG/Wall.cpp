@@ -37,19 +37,38 @@ void Wall::draw()
 {
 	if (m_state->isOnEdge()) {
 		if (m_state->m_global_offset_x - w / 2 > 0) {
-			for (Box* box : list) {
-				graphics::drawRect(box->m_pos_x + m_state->getBackgroundWidth() / 2, box->m_pos_y + m_state->m_global_offset_y, box->m_width, box->m_height, m_brush_wall);
+			if (m_state->m_global_offset_y - h / 2 > 0) {
+				for (Box* box : list) {
+					graphics::drawRect(box->m_pos_x + m_state->getBackgroundWidth() / 2, box->m_pos_y + m_state->getBackgroundHeight() / 2, box->m_width, box->m_height, m_brush_wall);
+				}
+			}
+			else {
+				for (Box* box : list) {
+					graphics::drawRect(box->m_pos_x + m_state->getBackgroundWidth() / 2, box->m_pos_y + m_state->m_global_offset_y, box->m_width, box->m_height, m_brush_wall);
+				}
 			}
 		}
 		else {
-			for (Box* box : list) {
-				graphics::drawRect(box->m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, box->m_pos_y + m_state->m_global_offset_y, box->m_width, box->m_height, m_brush_wall);
+			if (m_state->m_global_offset_y - h / 2 > 0) {
+				for (Box* box : list) {
+					graphics::drawRect(box->m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, box->m_pos_y + m_state->getBackgroundHeight() / 2, box->m_width, box->m_height, m_brush_wall);
+				}
+			} else {
+				for (Box* box : list) {
+					graphics::drawRect(box->m_pos_x + m_state->getCanvasWidth() - m_state->getBackgroundWidth() / 2, box->m_pos_y + m_state->m_global_offset_y, box->m_width, box->m_height, m_brush_wall);
+				}
 			}
 		}
 	}
 	else {
-		for (Box* box : list) {
-			graphics::drawRect(box->m_pos_x + m_state->m_global_offset_x, box->m_pos_y + m_state->m_global_offset_y, box->m_width, box->m_height, m_brush_wall);
+		if (m_state->m_global_offset_y - h / 2 > 0) {
+			for (Box* box : list) {
+				graphics::drawRect(box->m_pos_x + m_state->m_global_offset_x, box->m_pos_y + m_state->getBackgroundHeight() / 2, box->m_width, box->m_height, m_brush_wall);
+			}
+		} else {
+			for (Box* box : list) {
+				graphics::drawRect(box->m_pos_x + m_state->m_global_offset_x, box->m_pos_y + m_state->m_global_offset_y, box->m_width, box->m_height, m_brush_wall);
+			}
 		}
 	}
 }

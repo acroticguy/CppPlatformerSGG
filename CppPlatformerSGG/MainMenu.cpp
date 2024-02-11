@@ -20,7 +20,7 @@ void MainMenu::update(float dt)
 
 	curr_cd += delta_t;
 
-	bool cd_exceeded = (curr_cd > cooldown);
+	bool cd_exceeded = (curr_cd > m_state->cooldown);
 
 	if (graphics::getKeyState(graphics::SCANCODE_UP)) {
 		if (cd_exceeded) {
@@ -92,9 +92,9 @@ void MainMenu::draw()
 
 	graphics::drawRect(0.6f, curr_selected + 2.3, -0.5, 0.25, m_brush_arrow);
 
-	std::string control_msgs[4] = { "CONTROLS:", "WASD/ARROW KEYS TO MOVE", "ENTER/SPACE TO SHOOT", "PRO TIP: DON'T DIE!" };
+	std::string control_msgs[6] = { "CONTROLS:", "WASD/ARROW KEYS TO MOVE", "ENTER/SPACE TO SHOOT", "G TO TOGGLE DEBUG MODE", "", "PRO TIP: DON'T DIE!"};
 
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 6; i++) {
 		graphics::drawText(8, i/2.f + 2.5, 0.5, control_msgs[i], m_brush_sel);
 	}
 }

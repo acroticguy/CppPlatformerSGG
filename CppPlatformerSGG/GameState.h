@@ -17,7 +17,7 @@ private:
 	float m_canvas_height = 8.f;
 
 	float m_background_width = 4.f * m_canvas_width;
-	float m_background_height = 2.f * m_canvas_height;
+	float m_background_height = 1.f * m_canvas_height;
 
 	static GameState* m_unique_instance;
 
@@ -32,10 +32,9 @@ private:
 	GameState();
 
 public:
+	const float cooldown = 0.25f;
 	float m_global_offset_x = 0.0f;
 	float m_global_offset_y = 0.0f;
-
-	bool m_global_collision = false;
 
 	bool init();
 	void draw();

@@ -13,7 +13,6 @@ protected:
 	class GameState* m_state;
 	std::string title;
 
-	const float cooldown = 0.25f;
 	float curr_cd;
 
 public:

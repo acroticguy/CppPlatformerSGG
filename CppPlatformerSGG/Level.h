@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "PowerUp.h"
 #include "graphics.h"
-#include "Enemy.h"//Van
+#include "Enemy.h"
 #include "Weapon.h"
 #include <list>
 
@@ -27,13 +27,14 @@ class Level : public GameObject {
 	std::vector<GameObject*> m_static_objects;
 	std::list<PowerUp*> m_power_ups;
 	std::list<GameObject*> m_dynamic_objects;
-	std::list<Enemy*> m_Enemies;//Van
+	std::list<Enemy*> m_Enemies;
 	std::list<Weapon*> m_Weapons;
 
 public:
 	void update(float dt) override;
 	void init() override;
 	void draw() override;
+	int getPowerUp();
 	Level(const std::string& name = "Level0");
 	~Level();
 };

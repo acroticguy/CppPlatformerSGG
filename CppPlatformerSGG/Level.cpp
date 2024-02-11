@@ -20,9 +20,8 @@ void Level::update(float dt)
 	
 	float delta_t = dt / 1000.f;
 
-	/*Vangelis - Add countdown for player's health*/
-	m_state->getPlayer()->getHealth() <= 0 ? m_state->getPlayer()->updateHealth(0) : m_state->getPlayer()->updateHealth(-delta_t);//Van
-	/*Vangelis*/
+	//Add countdown for player's health
+	m_state->getPlayer()->setHealth(std::max(0.f, m_state->getPlayer()->getHealth() - delta_t));
 
 	if (m_state->getPlayer()->is_dead) {
 		if (secs_dead == 0.f) {
@@ -157,39 +156,85 @@ void Level::init()
 	m_dynamic_objects.clear();
 	m_Enemies.clear();
 	m_Weapons.clear();
-	//m_state->getPlayer()->updateHealth(m_state->getPlayer()->initHealth);//Van
 	time = 0;
 	m_brush_background.outline_opacity = 0.f;
-	m_brush_background.texture = m_state->getAssetPath("profilebg.png");
+	m_brush_background.texture = m_state->getAssetPath("bkg_swamp2.png");
 
-	Wall* ground = new Wall(-m_state->getBackgroundWidth() / 2, m_state->getBackgroundWidth() / 2, 8, 8, "Grass");
-	Wall* random_block = new Wall(1, 3, 7, 7, "Grass");
-	Wall* wall_left = new Wall(-(m_state->getBackgroundWidth() / 2 - 0.5f), -(m_state->getBackgroundWidth() / 2 - 0.5f), 0, m_state->getBackgroundHeight() / 2 - 1, "Wall");
-	Wall* wall_right = new Wall((m_state->getBackgroundWidth() / 2 - 0.5f), (m_state->getBackgroundWidth() / 2 - 0.5f), 0, m_state->getBackgroundHeight() / 2 - 1, "Wall");
-	PowerUp* apple = new Apple(-1, 7, 1, 1);
-	PowerUp* banana = new Bananas(-5, 7, 1, 1);
-	PowerUp* cherry = new Cherries(4, 5, 1, 1);
-	PowerUp* kiwi = new Kiwi(7, 7, 1, 1);
-	PowerUp* melon = new Melon(-10, 7, 1, 1);
-	PowerUp* orange = new Orange(10, 7, 1, 1);
-	PowerUp* ananas = new Pineapple(6, 5, 1, 1);
-	PowerUp* strawberry = new Strawberry(-14, 7, 1, 1);
+	const int min_platform_distance = 2; // Minimum distance between blocks
+	const int max_platform_distance = 4; // Maximum distance between blocks
 
-	End* fin = new End(30, 7, 1, 1);
+	const int min_y = 0;
+	const int max_y = m_state->getBackgroundHeight() / 2 - 1;
+
+	const int max_x = m_state->getBackgroundWidth() / 2 - 5; // We will later manually add the last platform, in order to add the exit.
+	int next_platform = -(m_state->getBackgroundWidth() / 2 - 2);
+	int y_pos = 3;
+
+	Wall* platform;
+	PowerUp* pwrup;
+	while (next_platform + 2 < max_x) {
+		int num = rand();
+		y_pos = num % 2 == 0 ? std::min(max_y, y_pos + 1) : std::max(min_y, y_pos - 1);
+		platform = new Wall(next_platform, next_platform + 2, y_pos, y_pos, "Grass");
+
+		// Pick Fruit
+		switch (getPowerUp()) {
+		case 0:
+			//Empty Platform
+			break;
+		case 1:
+			pwrup = new Apple(next_platform + 1, y_pos - 1, 1, 1);
+			m_power_ups.push_back(pwrup);
+			break;
+		case 2:
+			pwrup = new Bananas(next_platform + 1, y_pos - 1, 1, 1);
+			m_power_ups.push_back(pwrup);
+			break;
+		case 3:
+			pwrup = new Cherries(next_platform + 1, y_pos - 1, 1, 1);
+			m_power_ups.push_back(pwrup);
+			break;
+		case 4:
+			pwrup = new Kiwi(next_platform + 1, y_pos - 1, 1, 1);
+			m_power_ups.push_back(pwrup);
+			break;
+		case 5:
+			pwrup = new Melon(next_platform + 1, y_pos - 1, 1, 1);
+			m_power_ups.push_back(pwrup);
+			break;
+		case 6:
+			pwrup = new Orange(next_platform + 1, y_pos - 1, 1, 1);
+			m_power_ups.push_back(pwrup);
+			break;
+		case 7:
+			pwrup = new Pineapple(next_platform + 1, y_pos - 1, 1, 1);
+			m_power_ups.push_back(pwrup);
+			break;
+		case 8:
+			pwrup = new Strawberry(next_platform + 1, y_pos - 1, 1, 1);
+			m_power_ups.push_back(pwrup);
+			break;
+		}
+
+		int selection = num % (max_platform_distance - min_platform_distance + 1) + 2;
+		next_platform += selection;
+		m_static_objects.push_back(platform);
+	}
+
+	int num = rand();
+	y_pos = num % 2 == 0 ? std::min(max_y, y_pos + 1) : std::max(min_y, y_pos - 1);
+	platform = new Wall(max_x, max_x + 2, y_pos, y_pos, "Grass");
+	m_static_objects.push_back(platform);
+	End* fin = new End(max_x + 2, y_pos - 1, 1, 1);
+
+	Wall* ground = new Wall(-m_state->getBackgroundWidth() / 2, m_state->getBackgroundWidth() / 2, 4, 4, "Grass2");
+	Wall* wall_left = new Wall(-(m_state->getBackgroundWidth() / 2 - 0.5f), -(m_state->getBackgroundWidth() / 2 - 0.5f), -4, m_state->getBackgroundHeight() / 2 - 1, "Wall");
+	Wall* wall_right = new Wall((m_state->getBackgroundWidth() / 2 - 0.5f), (m_state->getBackgroundWidth() / 2 - 0.5f), -4, m_state->getBackgroundHeight() / 2 - 1, "Wall");
 	
 	m_static_objects.push_back(ground);
-	m_static_objects.push_back(random_block);
 	m_static_objects.push_back(wall_left);
 	m_static_objects.push_back(wall_right);
 	m_static_objects.push_back(fin);
-	m_power_ups.push_back(apple);
-	m_power_ups.push_back(banana);
-	m_power_ups.push_back(cherry);
-	m_power_ups.push_back(kiwi);
-	m_power_ups.push_back(melon);
-	m_power_ups.push_back(orange);
-	m_power_ups.push_back(ananas);
-	m_power_ups.push_back(strawberry);
 	
 	for (auto& p_gob : m_static_objects) {
 		if (p_gob) {
@@ -224,12 +269,26 @@ void Level::draw()
 
 	if (m_state->isOnEdge()) {
 		if (offset_x > 0) {
-			graphics::drawRect(m_state->getBackgroundWidth()/2, m_state->m_global_offset_y, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+			if (offset_y > 0) {
+				graphics::drawRect(m_state->getBackgroundWidth() / 2, m_state->getBackgroundHeight() / 2, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+			} else {
+				graphics::drawRect(m_state->getBackgroundWidth() / 2, m_state->m_global_offset_y, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+			}
 		} else {
-			graphics::drawRect(w - m_state->getBackgroundWidth()/2, m_state->m_global_offset_y, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+			if (offset_y > 0) {
+				graphics::drawRect(w - m_state->getBackgroundWidth() / 2, m_state->getBackgroundHeight() / 2, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+			} else {
+				graphics::drawRect(w - m_state->getBackgroundWidth() / 2, m_state->m_global_offset_y, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+			}
 		}
 	} else {
-		graphics::drawRect(m_state->m_global_offset_x, m_state->m_global_offset_y, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+		if (offset_y > 0) {
+			graphics::drawRect(m_state->m_global_offset_x, m_state->getBackgroundHeight() / 2, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+		}
+		else {
+			graphics::drawRect(m_state->m_global_offset_x, m_state->m_global_offset_y, m_state->getBackgroundWidth(), m_state->getBackgroundHeight(), m_brush_background);
+		}
+		
 	}
 	if (m_state->getPlayer()->isActive()) {
 		m_state->getPlayer()->draw();
@@ -273,7 +332,6 @@ void Level::draw()
 	
 	graphics::Brush br_lives;
 	br_lives.outline_opacity = 0.f;
-	//m_state->getPlayer()->getHealth() 
 	SETCOLOR(br_lives.fill_color, 1.f, 0.f, 0.f);
 	SETCOLOR(br_lives.fill_secondary_color, 1.f, 1.f, 1.f);
 	br_lives.fill_opacity = 1.0f;
@@ -281,7 +339,6 @@ void Level::draw()
 	br_lives.gradient = true;
 	br_lives.gradient_dir_u = 0.7f;
 	br_lives.gradient_dir_v = 0.3f;
-
 
 	/*Vangelis - Health Bar*/
 
@@ -324,6 +381,11 @@ void Level::draw()
 
 		graphics::drawRect(m_state->getCanvasWidth() / 2, std::min(m_state->getCanvasHeight() / 4, game_over_pos_offset), m_state->getCanvasWidth() / 2, 1, br);
 	}
+}
+
+int Level::getPowerUp()
+{
+	return rand() % 9;
 }
 
 Level::Level(const std::string& name) {}

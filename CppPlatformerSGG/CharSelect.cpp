@@ -22,7 +22,7 @@ void CharSelect::update(float dt)
 	curr_cd += delta_t;
 	frame_count += animation_cycle * delta_t;
 
-	bool cd_exceeded = (curr_cd > cooldown);
+	bool cd_exceeded = (curr_cd > m_state->cooldown);
 
 	if (graphics::getKeyState(graphics::SCANCODE_LEFT)) {
 		if (cd_exceeded) {

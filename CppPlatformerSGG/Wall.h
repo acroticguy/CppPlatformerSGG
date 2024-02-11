@@ -24,6 +24,12 @@ public:
 		starting_y = s_y;
 		ending_y = e_y;
 	}
+
+	float getStarting_x() { return starting_x; };
+	void  setStarting_x(float s_x) { starting_x = s_x; };
+	float getStarting_y() { return starting_y; };
+	void  setStarting_y(float s_y) { starting_y = s_y; };
+
 	void update(float dt) override;
 	void init() override;
 	void draw() override;

@@ -21,7 +21,7 @@ void GameOver::update(float dt)
 
 	curr_cd += delta_t;
 
-	bool cd_exceeded = (curr_cd > cooldown);
+	bool cd_exceeded = (curr_cd > m_state->cooldown);
 
 	if (graphics::getKeyState(graphics::SCANCODE_UP)) {
 		if (cd_exceeded) {

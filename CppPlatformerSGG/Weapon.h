@@ -9,6 +9,7 @@ private:
 	const int fire_frame_sum = 1;
 protected:
 	const int animation_cycle = 1;
+	const int speed = 12;
 
 	graphics::Brush m_brush_weapon;
 	

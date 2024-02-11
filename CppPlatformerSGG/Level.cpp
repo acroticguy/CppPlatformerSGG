@@ -20,6 +20,10 @@ void Level::update(float dt)
 	
 	float delta_t = dt / 1000.f;
 
+	curr_cd += delta_t;
+
+	bool cd_exceeded = (curr_cd > m_state->cooldown);
+
 	//Add countdown for player's health
 	m_state->getPlayer()->setHealth(std::max(0.f, m_state->getPlayer()->getHealth() - delta_t));
 
@@ -55,8 +59,7 @@ void Level::update(float dt)
 		int current_sec = static_cast<int>(floor(time));
 
 		if (current_sec % 4 == 3 && !enemy_spawned) {
-			//Enemy* opp = new Enemy(m_state->getPlayer()->m_pos_y);
-			Enemy* opp = new Enemy(1,m_state->getPlayer()->m_pos_y,1.5,1,"Bat");//Van
+			Enemy* opp = new Enemy(1,m_state->getPlayer()->m_pos_y,1.5,1,"Bat");
 			opp->init();
 			m_Enemies.push_back(opp);
 			enemy_spawned = true;
@@ -96,12 +99,13 @@ void Level::update(float dt)
 		}
 
 		if (graphics::getKeyState(graphics::SCANCODE_SPACE) || graphics::getKeyState(graphics::SCANCODE_RETURN)) {
-			//Weapon* wpn = new Weapon(m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y, 0.2, 0.2);
-			Weapon* wpn = new Weapon();
-			wpn->init();
-			m_Weapons.push_back(wpn);
-			wpn->is_firing = true;
-
+			if (cd_exceeded) {
+				Weapon* wpn = new Weapon();
+				wpn->init();
+				m_Weapons.push_back(wpn);
+				wpn->is_firing = true;
+				curr_cd = 0;
+			}
 		}
 
 		for (auto it = m_Weapons.begin(); it != m_Weapons.end();) {
@@ -121,15 +125,12 @@ void Level::update(float dt)
 							++ix;
 							continue;
 						}
-						//    if (p_wpn->hitbox->intersect(*p_opp->hitbox)) {
-							//    p_opp->setKilled(true);//Van
-						//}
 					}
 					else {
 						ix = m_Enemies.erase(ix);  // Erase returns the iterator to the next element.
 						delete p_opp;
 					}
-					if (ix != m_Enemies.end()) {//Van after search in web
+					if (ix != m_Enemies.end()) {
 						++ix;
 					}
 				}
@@ -151,6 +152,8 @@ void Level::update(float dt)
 
 void Level::init()
 {
+	srand(static_cast<int>(floor(m_state->difficulty_multiplier)));
+
 	m_static_objects.clear();
 	m_power_ups.clear();
 	m_dynamic_objects.clear();
@@ -159,6 +162,8 @@ void Level::init()
 	time = 0;
 	m_brush_background.outline_opacity = 0.f;
 	m_brush_background.texture = m_state->getAssetPath("bkg_swamp2.png");
+
+	curr_cd = 0;
 
 	const int min_platform_distance = 2; // Minimum distance between blocks
 	const int max_platform_distance = 4; // Maximum distance between blocks

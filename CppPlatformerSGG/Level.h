@@ -22,6 +22,8 @@ class Level : public GameObject {
 	float game_over_pos_offset = 0.f;
 	float secs_dead = 0.f;
 
+	float curr_cd;
+
 	std::string soundtrack = "Undertale - Bonetrousle.mp3";
 
 	std::vector<GameObject*> m_static_objects;

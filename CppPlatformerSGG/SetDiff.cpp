@@ -51,11 +51,11 @@ void SetDiff::update(float dt)
 				break;
 			case 1:
 				//CHAR SELECT
-				m_state->difficulty_multiplier = 1.5f;
+				m_state->difficulty_multiplier = 2.f;
 				break;
 			case 2:
 				//HARD
-				m_state->difficulty_multiplier = 2.f;
+				m_state->difficulty_multiplier = 3.f;
 				break;
 			case 3:
 				//IMPOSSIBLE
